@@ -1,7 +1,8 @@
 package proj
-
+//smallchange
 import util.Random
 import io.Source
+
 sealed trait Facing
 case object North extends Facing
 case object South extends Facing
