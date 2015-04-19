@@ -1,0 +1,10 @@
+To use scalatest on GameObj.scala, open CMD prompt in this directory
+(scala and python must be in environment path and scalatest must be installed)
+Then execute:
+python run.py GameObj.scala GameTest.scala
+This will open the scalatest dialog where you can view information about the tests.
+
+If python is not installed or configured, python was simply calling OS.system with the following commands:
+scalac -d bin/GameObj.jar GameObj.scala
+scalac -classpath bin/GameObj.jar -d bin/GameTest.jar GameTest.scala
+scala -classpath bin/GameObj.jar org.scalatest.tools.Runner -R bin/GameTest.jar

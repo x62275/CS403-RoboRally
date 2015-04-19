@@ -1,0 +1,31 @@
+* * * * * * * * * * * * * *
+*     T U T D U T D T U   *
+* L   H U   D U $ D     R *
+* [     U   D U   D [   ] *
+* R R R     D U   D L L L *
+* [ $     B D U B       ] *
+* L L L L L     L L L L L *
+*   R R R R     R R R R R *
+* [       T D U T   $   ] *
+* L L L     D U     L L L *
+* [     U   D U   D   T ] *
+* H B   U   D U   D     R *
+*     B U B D   B D B U   *
+*         [     ]         *
+*                         *
+*       3         4       *
+*           1 2           *
+* * * * * * * * * * * * * *
+
+*       Edge
+H       Hole
+R       Conveyer Right
+L       Conveyer Left
+U       Conveyer Up
+D       Conveyer Down
+T       Wall Above Block
+B       Wall Below Block
+[       Wall Left of Block
+]       Wall Right of Block
+$       Flag
+1,2,3,4 Starting Blocksjavascript:showLesson('WEB-3')
