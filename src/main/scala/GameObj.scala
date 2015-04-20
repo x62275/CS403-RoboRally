@@ -8,8 +8,7 @@ case object North extends Facing
 case object South extends Facing
 case object East extends Facing
 case object West extends Facing
-class Robot(var x:Int,var y:Int,val robotNumber:Int,var direction:Facing, var hand:Array[Card]){
-    private var currentFlag = 0
+case class Robot(var x:Int,var y:Int,val robotNumber:Int,var direction:Facing, var hand:Array[Card], var currentFlag:Int = 0){
     def updateFlag(flag:Int){if(flag == currentFlag + 1) currentFlag+=1}
     def getFlag:Int = currentFlag
 }
@@ -58,12 +57,11 @@ class Register{
     def viewRegister:Array[Card]= cards
 }
 
-class Game{
-    private var board:Array[Array[Char]] = null //uninitialized
-    private var numRobots = 4
-    private var robots = Array.fill[Robot](numRobots)(null)
+class Game( var board:Array[Array[Char]] = null, var robots:Array[Robot] = Array.fill[Robot](4)(null)) {
+    //private var board:Array[Array[Char]] = null //uninitialized
+    def copy = new Game(board.map(_.clone), robots.map(_.copy()))
     private var deck = new Deck
-    private var registers = Array.fill[Register](numRobots){ new Register }
+    private var registers = Array.fill[Register](4){ new Register }
     val startBlocks = List((5,15),(6,15),(3,14),(8,14))
     def decksize = deck.length
     def interpretBoard:Array[Array[Char]]={
@@ -284,7 +282,7 @@ class GameSim(board:Game, po:PlayerOrder){
     }
     def doMove{
         val player = po.curUp
-        val selection = po.players(player-1).placeCards(player, board.showHand(player), board.getLayout, board.getRobotLocations)
+        val selection = po.players(player-1).placeCards(player, board.showHand(player), board.copy)
         assert(selection.toSet == board.showHand(player).toSet) // no cheating 
         val r = new Register
         r.updateRegister(selection.take(5))
@@ -309,10 +307,25 @@ class GameSim(board:Game, po:PlayerOrder){
 
 abstract class Personality{
     //sort the cards in your hand by priority (first 5 will be placed in the register)
-    def placeCards(robotNumber:Int,hand:Array[Card],board:Array[Array[Char]],positions:Array[(Int,Int)]):Array[Card]
+    def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card]
 }
 class Personality0 extends Personality{
-    def placeCards(robotNumber:Int,hand:Array[Card],board:Array[Array[Char]],positions:Array[(Int,Int)]):Array[Card] = {
+    def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
         hand // really lame personality
+    }
+}
+class Loves_Conveyer_Belts extends Personality{
+    //loves conveyer belts
+    def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
+        //find my position
+        def findpos(game:Game=game):(Int, Int) = (game.robots(robotNumber).x, game.robots(robotNumber).y)
+        //where will my cards take me?
+        hand.map{card => 
+            val testgame = game.copy
+            testgame.playCard(robotNumber, card)
+            val (x, y) = findpos(testgame)
+            val c = game.board(x)(y)
+            if(c=='R' || c=='L' || c=='U' || c=='D') (0, card) else (1, card)
+        }.sortBy(_._1).map(_._2)
     }
 }
