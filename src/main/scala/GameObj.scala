@@ -327,7 +327,22 @@ class Loves_Conveyer_Belts extends Personality{
             testgame.playCard(robotNumber, card)
             val (x, y) = findpos(testgame)
             val c = game.board(x)(y)
+            //give the conveyer belt pieces a higher priority
             if(c=='R' || c=='L' || c=='U' || c=='D') (0, card) else (1, card)
         }.sortBy(_._1).map(_._2)
+    }
+}
+
+class Eyes_Closed extends Personality {
+    def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
+        //close your eyes and pick the cards
+        Random.shuffle(hand.toList).toArray
+    }
+}
+
+class Shortest_Path extends Personality {
+    def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
+        //find the general direction of the flag (N, S, E, W)
+        hand
     }
 }
