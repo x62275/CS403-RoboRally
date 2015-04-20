@@ -272,6 +272,7 @@ class GameSim(board:Game, po:PlayerOrder){
         val r = board.viewRegisters
         val card = r(p-1).viewRegister(currentPhase)
         board.playCard(p, card)
+        println("player " + p.toString + " executes " + card.attribute.toString)
         card
     }
     def doRegisterPhase{
