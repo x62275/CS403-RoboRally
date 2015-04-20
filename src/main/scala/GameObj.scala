@@ -261,8 +261,6 @@ case class PlayerOrder(players:Array[Personality]){
 }
 
 class GameSim(board:Game, po:PlayerOrder){
-    var pause:Boolean = false
-
     def playOrder(phaseNumber:Int):List[Int]={board.getOrder(phaseNumber)}
     def checkWin:Int={ //playernum if player wins else 0
         val s = board.getScore
@@ -301,9 +299,12 @@ class GameSim(board:Game, po:PlayerOrder){
         board.endTurn
     }
     def doGame{
-        pause = false
+        var turnNum = 0
         //board.init
-        while(checkWin==0 && pause==false) doTurn
+        while(checkWin==0 && turnNum < 100) {
+            doTurn
+            turnNum +=1
+        }
     }
 }
 
