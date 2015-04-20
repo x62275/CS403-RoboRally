@@ -15,7 +15,8 @@ object Main {
   }
 }
 class Model {    
-  val po = new PlayerOrder( Array.fill(4)( new Personality0 ) )
+  val ai:Array[Personality] = Array( new Loves_Conveyer_Belts , new Personality0 , new Personality0 , new Personality0 )
+  val po = new PlayerOrder( ai )
   val game = new Game()
   def initGame { game.init }
 }
