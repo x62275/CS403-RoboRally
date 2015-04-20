@@ -53,10 +53,7 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
   def initGame = {
     model.initGame
     showGame
-    // doGame
-    // doTurn
   }
-  // initGame
   
   def showGame = {
     // showPlayerOrder
