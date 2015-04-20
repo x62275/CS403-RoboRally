@@ -263,26 +263,19 @@ case class PlayerOrder(players:Array[Personality]){
 }
 
 class GameSim(board:Game, po:PlayerOrder){
-    // def playArea:Array[Array[Char]]={board.textGameArea}
-    // def printPlayArea{
-    //     for(l<-playArea) {
-    //         var tl = ""
-    //         for(c<-l) tl+= c + " "
-    //         println(tl)
-    //     }
-    // }
+
     def playOrder(phaseNumber:Int):List[Int]={board.getOrder(phaseNumber)}
     def checkWin:Int={ //playernum if player wins else 0
         val s = board.getScore
         for(i<-s.indices) if(s(i)==3) return i
         0
     }
-    //def showCardExec(text_to_update:String) { val input = readLine("") }
-    def doExecute(p:Int, currentPhase:Int):(Int, Card) = {
+    
+    def doExecute(p:Int, currentPhase:Int):Card = {
         val r = board.viewRegisters
         val card = r(p-1).viewRegister(currentPhase)
         board.playCard(p, card)
-        (p, card)
+        card
     }
     def doRegisterPhase{
         val currentPhase = board.curPhase
