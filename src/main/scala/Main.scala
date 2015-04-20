@@ -53,10 +53,7 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
   def initGame = {
     model.initGame
     showGame
-    // doGame
-    doTurn
   }
-  // initGame
   
   def showGame = {
     // showPlayerOrder
@@ -70,6 +67,11 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
 
   def showPlayingArea {
     views.foreach(_.displayPlayingArea(model.game))
+    for(l<-model.game.textGameArea) {
+      var tl = ""
+      for(c<-l) tl+= c + " "
+      println(tl)
+    }
   }
 
   // def advancePlayerOrder { 

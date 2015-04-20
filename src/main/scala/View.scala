@@ -82,7 +82,7 @@ class TextView extends View {
   // }
 
   def displayPlayingArea(game: Game) {
-    // playingAreaDisplay.text = ""
+    playingAreaDisplay.text = ""
     for(l<-game.textGameArea) {
       var tl = ""
       for(c<-l) tl+= c + " "
