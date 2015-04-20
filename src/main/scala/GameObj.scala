@@ -299,9 +299,9 @@ class GameSim(board:Game, po:PlayerOrder){
             doRegisterPhase
         board.endTurn
     }
-    def doGame{
+    def doGame(pause:Boolean = false){
         //board.init
-        while(checkWin==0) doTurn
+        while(checkWin==0 || pause==false) doTurn
     }
 }
 
