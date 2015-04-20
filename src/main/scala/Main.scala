@@ -31,6 +31,7 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
   override def doExecute(p:Int, currentPhase:Int):Card = {
     val card = super.doExecute(p, currentPhase)
     showCardExec("player " + p.toString + " executes " + card.attribute.toString)
+    println("player " + p.toString + " executes " + card.attribute.toString)
     card
   }
 
