@@ -287,9 +287,9 @@ class GameSim(board:Game, po:PlayerOrder){
         val r = new Register
         r.updateRegister(selection.take(5))
         board.updateRegister(player, r, selection.drop(5))
-        // var s = "player "+player.toString+" plays"
-        // for(i<-selection.dropRight(2)) s+= " "+i.attribute.toString
-        // println(s)
+        var s = "player "+player.toString+" plays"
+        for(i<-selection.dropRight(2)) s+= " "+i.attribute.toString
+        println(s)
     }
     def doTurn{
         //get card selections from players
@@ -322,16 +322,36 @@ class Loves_Conveyer_Belts extends Personality{
     //loves conveyer belts
     def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
         //find my position
-        def findpos(game:Game=game):(Int, Int) = (game.robots(robotNumber).x, game.robots(robotNumber).y)
+        def findpos(game:Game=game):(Int, Int) = (game.robots(robotNumber-1).x, game.robots(robotNumber-1).y)
+        def findface(game:Game=game):Facing = game.robots(robotNumber-1).direction
         //where will my cards take me?
-        hand.map{card => 
-            val testgame = game.copy
-            testgame.playCard(robotNumber, card)
-            val (x, y) = findpos(testgame)
-            val c = game.board(x)(y)
-            //give the conveyer belt pieces a higher priority
-            if(c=='R' || c=='L' || c=='U' || c=='D') (0, card) else (1, card)
-        }.sortBy(_._1).map(_._2)
+        var localhand = hand
+        val chosen:Array[Card] = Array.fill(7)(null)
+        for(i<- 0 until 7){
+            //println(chosen.map(a=> if(a==null) "n" else a.attribute.toString).mkString(", "))
+            val choices = localhand.map{card => 
+                val (x0, y0) = findpos()
+                val testgame = game.copy
+                testgame.playCard(robotNumber, card)
+                val (x, y) = findpos(testgame)
+                val c = game.board(x)(y)
+                //println(c, x, y)
+                //give the conveyer belt pieces a higher priority
+                if(c=='U') (0, card)
+                //give cards that move upward next highest
+                else if (y0 > y) (1, card)
+                //if facing north
+                else if (findface(testgame)==North) (2, card)
+                //we would rather ride the free train then random stuff
+                else if(c=='R' || c=='L' || c=='D') (3, card) 
+                else (4, card)
+            }.sortBy(_._1).map(_._2)
+            //println(choices.map(_.attribute.toString).mkString(", "))
+            chosen(i) = choices.head 
+            game.playCard(robotNumber, choices.head)
+            localhand = (localhand.toSet - choices.head).toArray
+        }
+        chosen
     }
 }
 

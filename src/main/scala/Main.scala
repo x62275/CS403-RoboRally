@@ -15,7 +15,8 @@ object Main {
   }
 }
 class Model {    
-  val ai:Array[Personality] = Array( new Loves_Conveyer_Belts , new Personality0 , new Personality0 , new Personality0 )
+  //val ai:Array[Personality] = Array( new Loves_Conveyer_Belts , new Personality0 , new Personality0 , new Personality0 )
+  val ai = Array.fill[Personality](4)( new Loves_Conveyer_Belts )
   val po = new PlayerOrder( ai )
   val game = new Game()
   def initGame { game.init }
@@ -31,7 +32,6 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
   override def doExecute(p:Int, currentPhase:Int):Card = {
     val card = super.doExecute(p, currentPhase)
     showCardExec("player " + p.toString + " executes " + card.attribute.toString)
-    println("player " + p.toString + " executes " + card.attribute.toString)
     card
   }
 
@@ -45,10 +45,10 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
   //   showPlayingArea
   // }
 
-  def showCardExec(text_to_update:String) { 
+  def showCardExec(text_to_update:String) {
     showPlayingArea
     views.foreach(_.displayCardExec(text_to_update))
-    // val input = readLine("waiting\n") 
+    val input = readLine("waiting\n") 
   }
 
   def initGame = {
