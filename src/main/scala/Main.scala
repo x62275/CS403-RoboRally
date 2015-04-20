@@ -1,17 +1,14 @@
 package proj
 
-import java.awt.Dimension
-import scala.swing._
-import java.awt.Color
-
 object Main {
   
   def main(args: Array[String]): Unit = {
     val model = new Model
-    val textView = new TextView
+    // val textView = new TextView
+    val gui = new GUI
     val controller = new Controller(model)
-    controller.register(textView)
-    textView.init(controller)
+    controller.register(gui)
+    gui.init(controller)
   }
 }
 class Model {    

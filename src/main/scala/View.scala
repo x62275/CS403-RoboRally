@@ -2,7 +2,7 @@ package proj
 
 import java.awt.Dimension
 import scala.swing._
-import java.awt
+import java.awt.Color
 
 abstract class View {
   var controller: Option[Controller] = None
@@ -66,7 +66,7 @@ abstract class View {
 
 class TextView extends View {
   // val playerOrderDisplay = new TextArea(1, 1) { background = awt.Color.yellow }
-  val playingAreaDisplay = new TextArea(100, 1) { background = awt.Color.white }
+  val playingAreaDisplay = new TextArea(100, 1) { background = Color.white }
 
   // def displayPlayerOrder(players: PlayerOrder) {
   //   // playerOrderDisplay.text = players.show
@@ -93,4 +93,11 @@ class TextView extends View {
   def displayCardExec(text: String) {
     playingAreaDisplay.text = text + "\n" + playingAreaDisplay
   }
+}
+
+class GUI extends View {
+  val playingAreaDisplay = new GridPanel(16,12) { background = Color.cyan }
+  
+  def displayCardExec(text: String) { }
+  def displayPlayingArea(game: Game) { }
 }
