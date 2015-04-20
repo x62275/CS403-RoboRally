@@ -12,9 +12,9 @@ object Main {
     // val controller = new Controller(model)
     // controller.register(textView)
     // textView.init(controller)
-    val game = new GameSim
-    game.init
-    game.doGame(true)
+    val po = new PlayerOrder( Array.fill(4)( new Personality0 ) )
+    val game = new GameSim( new Game , po)
+    game.doGame
   }
 }
 /*

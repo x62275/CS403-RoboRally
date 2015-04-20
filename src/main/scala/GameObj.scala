@@ -244,80 +244,73 @@ class Game{
         drawCards
     }
     def showHand(robotNumber:Int):Array[Card] = robots(robotNumber-1).hand
-    init
-}
-
-class GameSim{
-    private val players = Array.fill(4){ new Personality0 }
-    private val board = new Game
     private var phase:List[Int] = (0 until 5).toList
-    private var playerup:List[Int] = (1 to players.length).toList
     def curPhase:Int = {
         val t = phase.head
         phase = phase.tail :+ t
         t
     }
+    init
+}
+case class PlayerOrder(players:Array[Personality]){
+    assert(players.length == 4)
+    private var playerup:List[Int] = (1 to players.length).toList
     def curUp:Int={
         val t = playerup.head
         playerup = playerup.tail :+ t
         t
     } 
-    def playArea:Array[Array[Char]]={board.textGameArea}
-    def printPlayArea{
-        for(l<-playArea) {
-            var tl = ""
-            for(c<-l) tl+= c + " "
-            println(tl)
-        }
-    }
+}
+
+class GameSim(board:Game, po:PlayerOrder){
+    // def playArea:Array[Array[Char]]={board.textGameArea}
+    // def printPlayArea{
+    //     for(l<-playArea) {
+    //         var tl = ""
+    //         for(c<-l) tl+= c + " "
+    //         println(tl)
+    //     }
+    // }
     def playOrder(phaseNumber:Int):List[Int]={board.getOrder(phaseNumber)}
-    def init{board.init}
     def checkWin:Int={ //playernum if player wins else 0
         val s = board.getScore
         for(i<-s.indices) if(s(i)==3) return i
         0
     }
-    def doRegisterPhase(disp:Boolean =false){
-        val currentPhase = curPhase
+    //def showCardExec(text_to_update:String) { val input = readLine("") }
+    def doExecute(p:Int, currentPhase:Int):(Int, Card) = {
         val r = board.viewRegisters
-        for(p<-playOrder(currentPhase)){
-            val card = r(p-1).viewRegister(currentPhase)
-            board.playCard(p, card)
-            if(disp) {
-                println("player "+p.toString+" executes "+card.attribute.toString)
-                printPlayArea
-                val input = readLine("enter to continue, esc to quit\n")
-                if (input=="esc") throw new Exception("esc")
-            }
-        }
+        val card = r(p-1).viewRegister(currentPhase)
+        board.playCard(p, card)
+        (p, card)
+    }
+    def doRegisterPhase{
+        val currentPhase = board.curPhase
+        for(p<-playOrder(currentPhase)) doExecute(p, currentPhase)
         board.endRegisterPhase
     }
-    def doMove(disp:Boolean = false){
-        val player = curUp
-        val selection = players(player-1).placeCards(player, board.showHand(player), board.getLayout, board.getRobotLocations)
+    def doMove{
+        val player = po.curUp
+        val selection = po.players(player-1).placeCards(player, board.showHand(player), board.getLayout, board.getRobotLocations)
         assert(selection.toSet == board.showHand(player).toSet) // no cheating 
         val r = new Register
         r.updateRegister(selection.take(5))
         board.updateRegister(player, r, selection.drop(5))
-        if(disp){
-            var s = "player "+player.toString+" plays"
-            for(i<-selection.dropRight(2)) s+= " "+i.attribute.toString
-            println(s)
-        }
+        // var s = "player "+player.toString+" plays"
+        // for(i<-selection.dropRight(2)) s+= " "+i.attribute.toString
+        // println(s)
     }
-    def doTurn(disp:Boolean = false){
+    def doTurn{
         //get card selections from players
-        for(i<-players.indices)
-            doMove(disp)
+        for(i<-po.players.indices)
+            doMove
         for(currentPhase<-0 until 5)
-            doRegisterPhase(disp)
+            doRegisterPhase
         board.endTurn
-        if(disp) println("Turn complete")
     }
-    def doGame(disp:Boolean = false){
-        init
-        while(checkWin==0) doTurn(disp)
-        if(disp) println("winner is "+ checkWin.toString)
+    def doGame{
+        //board.init
+        while(checkWin==0) doTurn
     }
 }
 
