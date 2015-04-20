@@ -301,6 +301,7 @@ class GameSim(board:Game, po:PlayerOrder){
         board.endTurn
     }
     def doGame{
+        pause = false
         //board.init
         while(checkWin==0 && pause==false) doTurn
     }
