@@ -48,7 +48,7 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
   def showCardExec(text_to_update:String) {
     showPlayingArea
     views.foreach(_.displayCardExec(text_to_update))
-    val input = readLine("waiting\n") 
+    //val input = readLine("waiting\n") 
   }
 
   def initGame = {

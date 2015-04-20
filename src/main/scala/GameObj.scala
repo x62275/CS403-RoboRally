@@ -1,5 +1,5 @@
 package proj
-//smallchange
+
 import util.Random
 import io.Source
 
@@ -333,6 +333,7 @@ class Loves_Conveyer_Belts extends Personality{
                 val (x0, y0) = findpos()
                 val testgame = game.copy
                 testgame.playCard(robotNumber, card)
+                testgame.endRegisterPhase
                 val (x, y) = findpos(testgame)
                 val c = game.board(x)(y)
                 //println(c, x, y)
@@ -340,11 +341,13 @@ class Loves_Conveyer_Belts extends Personality{
                 if(c=='U') (0, card)
                 //give cards that move upward next highest
                 else if (y0 > y) (1, card)
-                //if facing north
-                else if (findface(testgame)==North) (2, card)
+                //if facing north, but werent before
+                else if (findface(testgame)==North && findface()!=North) (2, card)
                 //we would rather ride the free train then random stuff
                 else if(c=='R' || c=='L' || c=='D') (3, card) 
-                else (4, card)
+                //at least dont go backwards
+                else if(y0==y) (4, card)
+                else (5, card)
             }.sortBy(_._1).map(_._2)
             //println(choices.map(_.attribute.toString).mkString(", "))
             chosen(i) = choices.head 
@@ -364,7 +367,11 @@ class Eyes_Closed extends Personality {
 
 class Shortest_Path extends Personality {
     def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
+        //decide what flag you're on
         //find the general direction of the flag (N, S, E, W)
+        //prioritize turns that point you in the correct direction
+        //prioritize movement based on distance to the flag
+        //
         hand
     }
 }
