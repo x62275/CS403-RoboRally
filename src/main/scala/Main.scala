@@ -12,8 +12,8 @@ object Main {
   }
 }
 class Model {    
-  //val ai:Array[Personality] = Array( new Loves_Conveyer_Belts , new Personality0 , new Personality0 , new Personality0 )
-  val ai = Array.fill[Personality](4)( new Eyes_Closed )//Loves_Conveyer_Belts )
+  val ai:Array[Personality] = Array( new Loves_Conveyer_Belts , new Personality0 , new Eyes_Closed , new Shortest_Path )
+  //val ai = Array.fill[Personality](4)( new Eyes_Closed )
   val po = new PlayerOrder( ai )
   val game = new Game()
   game.init
@@ -66,11 +66,11 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
 
   def showPlayingArea {
     views.foreach(_.displayPlayingArea(model.game))
-    //for(l<-model.game.textGameArea) {
-    // var tl = ""
-    // for(c<-l) tl+= c + " "
-    // println(tl)
-    //}
+    // for(l<-model.game.textGameArea) {
+    //  var tl = ""
+    //  for(c<-l) tl+= c + " "
+    //  println(tl)
+    // }
   }
 
   // def advancePlayerOrder { 

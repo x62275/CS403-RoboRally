@@ -64,7 +64,8 @@ class Game( var board:Array[Array[Char]] = null, var robots:Array[Robot] = Array
     def copy = new Game(board.map(_.clone), robots.map(_.copy()))
     private var deck = new Deck
     private var registers = Array.fill[Register](4){ new Register }
-    var startBlocks = Array((5,15),(6,15),(3,14),(8,14))
+    val startBlocks = Array((5,15),(6,15),(3,14),(8,14))
+    val flags = Array((1,4),(9,7),(8,1))
     def decksize = deck.length
     def interpretBoard:Array[Array[Char]]={
         var r = Array.fill[Char](12,16)(' ')
@@ -390,11 +391,55 @@ class Eyes_Closed extends Personality {
 
 class Shortest_Path extends Personality {
     def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
+        def facing(t:Game=game) = t.robots(robotNumber-1).direction
+        def position(t:Game=game):(Int, Int) = (t.robots(robotNumber-1).x, t.robots(robotNumber-1).y)
         //decide what flag you're on
-        //find the general direction of the flag (N, S, E, W)
+        val lookingfor = game.robots(robotNumber-1).getFlag
+        //find starting position
+        val (x0:Int, y0:Int) = position()
+        //find the flag
+        val (x, y) = game.flags(lookingfor)
+        //find the general direction of the flag
+        def findangle(xn:Int=x0, yn:Int=y0) = {
+            var angle = Math.toDegrees(Math.atan2(x - xn, y - yn));
+            angle = angle + Math.ceil( -angle / 360 ) * 360
+            if(45 <= angle && angle < 135) East
+            else if(135 <= angle && angle < 225) South
+            else if(225 <= angle && angle < 315) West
+            else North
+        }
+        def distance(xn:Int=x0, yn:Int=y0) = {
+            val dx = x - xn
+            val dy = x - yn
+            Math.sqrt(dx*dx + dy*dy)
+        }
+        val startdist = distance()
         //prioritize turns that point you in the correct direction
         //prioritize movement based on distance to the flag
-        //
-        hand
+        var collection:List[(Array[Card],Int)] = List()
+        for(c<-hand.combinations(5)){
+            for(p<-c.permutations){
+                val testgame = game.copy
+                for(card<-p){
+                    testgame.playCard(robotNumber, card)
+                    testgame.endRegisterPhase
+                }
+                //find ending position and facing
+                val (xe, ye) = position(testgame)
+                val fe = facing(testgame)
+                val enddist = distance(xe, ye)
+                val endchar = testgame.board(xe)(ye)
+                //do tests to determine weight
+                var weight = 0
+                if(findangle(xe, ye)==fe) weight += 2
+                if(enddist < startdist) weight += (startdist-enddist).toInt
+                if( (endchar=='$' && lookingfor==0) || (endchar=='%' && lookingfor==1) || (endchar=='&' && lookingfor==2) )
+                    weight = Int.MaxValue
+                collection = (p, weight) +: collection
+            }
+        }
+        var choice:Array[Card] = collection.maxBy(_._2)._1
+        for(c<-hand) if(!choice.contains(c)) choice = choice :+ c
+        choice
     }
 }
