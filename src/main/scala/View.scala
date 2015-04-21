@@ -1,8 +1,11 @@
 package proj
 
-import java.awt.Dimension
+// import java.awt.Dimension
 import scala.swing._
-import java.awt.Color
+import javax.swing.ImageIcon
+import java.awt.{Color, Image}
+import java.io.File
+import scala.collection.mutable.Map
 
 abstract class View {
   var controller: Option[Controller] = None
@@ -19,7 +22,7 @@ abstract class View {
       // contents += playerOrderDisplay
       contents += playingAreaDisplay
     }
-    frame.size = new Dimension(1024, 768)
+    frame.size = new Dimension(600, 600)
     frame.centerOnScreen
     frame.visible = true
   }
@@ -96,8 +99,34 @@ class TextView extends View {
 }
 
 class GUI extends View {
-  val playingAreaDisplay = new GridPanel(16,12) { background = Color.cyan }
+  val images: Map[String,Image] = Map.empty
+  //load images
+  val dir = new File("img")
+  for (img <- dir.listFiles.map(_.toString)) {
+    images(img.slice(4,img.length - 4)) = new ImageIcon(img).getImage.getScaledInstance(25,25,Image.SCALE_DEFAULT)
+  }
+
+  val len = 16
+  val width = 12
+  val playingAreaDisplay = new GridPanel(width, len) {
+    val d = new Dimension(28*width, 28*len)
+    preferredSize = d
+    maximumSize = d
+    minimumSize = d
+    background = Color.cyan
+    for (i <- 1 to 16*12) contents += new Label {
+      val d = new Dimension(25,25)
+      preferredSize = d
+      maximumSize = d
+      minimumSize = d
+      verticalAlignment = Alignment.Top
+      horizontalAlignment = Alignment.Left
+      icon = new ImageIcon(images("open"))
+    }
+  }
   
   def displayCardExec(text: String) { }
-  def displayPlayingArea(game: Game) { }
+  def displayPlayingArea(game: Game) {
+
+  }
 }
