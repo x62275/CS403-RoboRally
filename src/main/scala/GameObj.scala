@@ -71,7 +71,7 @@ class Game( var board:Array[Array[Char]] = null, var robots:Array[Robot] = Array
         /*val source = scala.io.Source.fromFile("board.txt")
         val rows = source.getLines.toArray
         source.close()*/
-        val rows = "* * * * * * * * * * * * * *\n* X X T U T D U T D T U X *\n* L X H U X D U $ D X X R *\n* [ X X U X D U X D [ X ] *\n* R R R X X D U X D L L L *\n* [ $ X X B D U B X X X ] *\n* L L L L L X X L L L L L *\n* X R R R R X X R R R R R *\n* [ X X X T D U T X $ X ] *\n* L L L X X D U X X L L L *\n* [ X X U X D U X D X T ] *\n* H B X U X D U X D X X R *\n* X X B U B D X B D B U X *\n* X X X X [ X X ] X X X X *\n* X X X X X X X X X X X X *\n* X X X 3 X X X X 4 X X X *\n* X X X X X 1 2 X X X X X *\n* * * * * * * * * * * * * *".split('\n')
+        val rows = "* * * * * * * * * * * * * *\n* X X T U T D U T D T U X *\n* L X H U X D U $ D X X R *\n* [ X X U X D U X D [ X ] *\n* R R R X X D U X D L L L *\n* [ $ X X B D U B X X X ] *\n* L L L L L X X L L L L L *\n* X R R R R X X R R R R R *\n* [ X X X T D U T X $ X ] *\n* L L L X X D U X X L L L *\n* [ X X U X D U X D X T ] *\n* H B X U X D U X D X X R *\n* X X B U B D X B D B U X *\n* X X X X [ X X ] X X X X *\n* X X X X X X X X X X X X *\n* X X X r X X X X p X X X *\n* X X X X X g b X X X X X *\n* * * * * * * * * * * * * *".split('\n')
         for(y<-1 to 16){
             val columns = rows(y).split(' ').map(_(0))
             for(x<-1 to 12) r(x-1)(y-1) = columns(x)
