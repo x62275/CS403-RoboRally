@@ -289,7 +289,7 @@ class GameSim(board:Game, po:PlayerOrder){
         r.updateRegister(selection.take(5))
         board.updateRegister(player, r, selection.drop(5))
         var s = "player "+player.toString+" chooses"
-        for(i<-selection) s+= " "+i.attribute.toString
+        for(i<-selection.dropRight(2)) s+= " "+i.attribute.toString
         println(s)
     }
     def doTurn{
