@@ -22,7 +22,7 @@ abstract class View {
       // contents += playerOrderDisplay
       contents += playingAreaDisplay
     }
-    frame.size = new Dimension(600, 600)
+    frame.size = new Dimension(600, 800)
     frame.centerOnScreen
     frame.visible = true
   }
@@ -101,16 +101,17 @@ class TextView extends View {
 class GUI extends View {
   val images: Map[String,Image] = Map.empty
   //load images
+  val lw = 40
   val dir = new File("img")
   for (img <- dir.listFiles.map(_.toString)) {
-    images(img.slice(4,img.length - 4)) = new ImageIcon(img).getImage.getScaledInstance(25,25,Image.SCALE_SMOOTH)
+    images(img.slice(4,img.length - 4)) = new ImageIcon(img).getImage.getScaledInstance(lw,lw,Image.SCALE_SMOOTH)
   }
 
   val labels = Array.fill(16*12)(genLabel(images("open")))
   val len = 16
   val width = 12
   val playingAreaDisplay = new GridPanel(len, width) {
-    val d = new Dimension(30*width, 30*len)
+    val d = new Dimension(lw*width, lw*len)
     preferredSize = d
     maximumSize = d
     minimumSize = d
@@ -120,7 +121,7 @@ class GUI extends View {
   }
   def genLabel(img: Image) = {
     new Label {
-      val d = new Dimension(30,30)
+      val d = new Dimension(lw,lw)
       preferredSize = d
       maximumSize = d
       minimumSize = d
