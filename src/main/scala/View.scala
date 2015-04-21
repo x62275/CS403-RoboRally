@@ -142,7 +142,7 @@ class GUI extends View {
     case 'b' => images("blue_home")
     case '3' => images("red_robot")
     case 'r' => images("red_home")
-    case '4' => images("purple")
+    case '4' => images("purple_robot")
     case 'p' => images("purple_home")
 
     case 'L' => images("left_conveyer")
