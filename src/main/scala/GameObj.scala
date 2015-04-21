@@ -331,7 +331,6 @@ class Loves_Conveyer_Belts extends Personality{
         def findpos(t:Game=localgame):(Int, Int) = (t.robots(robotNumber-1).x, t.robots(robotNumber-1).y)
         def findface(t:Game=localgame):Facing = t.robots(robotNumber-1).direction
         //where will my cards take me?
-
         var localhand = hand
         val chosen:Array[Card] = Array.fill(7)(null)
         for(i<- 0 until 7){
@@ -445,5 +444,46 @@ class Shortest_Path extends Personality {
         var choice:Array[Card] = collection.maxBy(_._2)._1
         for(c<-hand) if(!choice.contains(c)) choice = choice :+ c
         choice
+    }
+}
+
+class Greedy_George extends Personality {
+    def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
+        def facing(t:Game=game) = t.robots(robotNumber-1).direction
+        def position(t:Game=game):(Int, Int) = (t.robots(robotNumber-1).x, t.robots(robotNumber-1).y)
+        //decide what flag you're on
+        var lookingfor = game.robots(robotNumber-1).getFlag
+        println(robotNumber.toString+" is looking for flag "+lookingfor.toString)
+        //find starting position
+        var (x0:Int, y0:Int) = position()
+        //find the flag
+        var (x, y) = game.flags(lookingfor)
+        //find the general direction of the flag
+        def findangle(xn:Int=x0, yn:Int=y0) = {
+            var angle = Math.toDegrees(Math.atan2(x - xn, y - yn));
+            angle = angle + Math.ceil( -angle / 360 ) * 360
+            if(45 <= angle && angle < 135) East
+            else if(135 <= angle && angle < 225) South
+            else if(225 <= angle && angle < 315) West
+            else North
+        }
+        var localhand = hand.clone
+        var chosen:Array[Card] = Array.fill(5)(null)
+        var n = 1
+        def getFirstMovement:Array[Card] = {
+            for(c <- localhand.combinations(n)){
+                for(p <- c.permutations){
+                    //play out p
+                    return p
+                }
+            }
+            hand  //remove
+        }
+        while(chosen.length < 5 && n <= 5){
+            val t = getFirstMovement
+
+            n += 1
+        }
+        hand //remove
     }
 }
