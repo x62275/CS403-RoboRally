@@ -1,4 +1,4 @@
-//package proj
+package proj
 
 import util.Random
 import io.Source
