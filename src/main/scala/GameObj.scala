@@ -65,7 +65,7 @@ class Game( var board:Array[Array[Char]] = null, var robots:Array[Robot] = Array
     private var deck = new Deck
     private var registers = Array.fill[Register](4){ new Register }
     val startBlocks = Array((5,15),(6,15),(3,14),(8,14))
-    val flags = Array((1,4),(9,7),(8,1))
+    val flags = Array((9,7),(1,4),(8,1))
     def decksize = deck.length
     def interpretBoard:Array[Array[Char]]={
         var r = Array.fill[Char](12,16)(' ')
@@ -234,6 +234,9 @@ class Game( var board:Array[Array[Char]] = null, var robots:Array[Robot] = Array
                     else if(board(r.x)(r.y+1) != 'T')
                         r.y = r.y+1
                 }
+                case '$' => r.updateFlag(1)
+                case '%' => r.updateFlag(2)
+                case '&' => r.updateFlag(3)
                 case _ => { }
             }
         }
@@ -266,7 +269,7 @@ class GameSim(board:Game, po:PlayerOrder){
     def playOrder(phaseNumber:Int):List[Int]={board.getOrder(phaseNumber)}
     def checkWin:Int={ //playernum if player wins else 0
         val s = board.getScore
-        for(i<-s.indices) if(s(i)==3) return i
+        for(i<-s.indices) if(s(i)==3) return i+1
         0
     }
     
@@ -395,6 +398,7 @@ class Shortest_Path extends Personality {
         def position(t:Game=game):(Int, Int) = (t.robots(robotNumber-1).x, t.robots(robotNumber-1).y)
         //decide what flag you're on
         val lookingfor = game.robots(robotNumber-1).getFlag
+        println(robotNumber.toString+" is looking for flag "+lookingfor.toString)
         //find starting position
         val (x0:Int, y0:Int) = position()
         //find the flag
