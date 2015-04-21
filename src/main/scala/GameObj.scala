@@ -1,4 +1,4 @@
-package proj
+//package proj
 
 import util.Random
 import io.Source
@@ -20,7 +20,9 @@ case object RotateRight extends CardType
 case object RotateLeft extends CardType
 case object BackUp extends CardType
 case object UTurn extends CardType
-class Card(val attribute:CardType, val priority:Int)
+class Card(val attribute:CardType, val priority:Int){
+    override def toString = attribute.toString
+}
 class Deck{
     private var cards: List[Card] = List()
     private var priorities = Random.shuffle(1 to 84)
@@ -62,7 +64,7 @@ class Game( var board:Array[Array[Char]] = null, var robots:Array[Robot] = Array
     def copy = new Game(board.map(_.clone), robots.map(_.copy()))
     private var deck = new Deck
     private var registers = Array.fill[Register](4){ new Register }
-    val startBlocks = List((5,15),(6,15),(3,14),(8,14))
+    var startBlocks = Array((5,15),(6,15),(3,14),(8,14))
     def decksize = deck.length
     def interpretBoard:Array[Array[Char]]={
         var r = Array.fill[Char](12,16)(' ')
@@ -248,7 +250,6 @@ class Game( var board:Array[Array[Char]] = null, var robots:Array[Robot] = Array
         phase = phase.tail :+ t
         t
     }
-    init
 }
 case class PlayerOrder(players:Array[Personality]){
     assert(players.length == 4)
@@ -287,8 +288,8 @@ class GameSim(board:Game, po:PlayerOrder){
         val r = new Register
         r.updateRegister(selection.take(5))
         board.updateRegister(player, r, selection.drop(5))
-        var s = "player "+player.toString+" plays"
-        for(i<-selection.dropRight(2)) s+= " "+i.attribute.toString
+        var s = "player "+player.toString+" chooses"
+        for(i<-selection) s+= " "+i.attribute.toString
         println(s)
     }
     def doTurn{
@@ -321,22 +322,24 @@ class Personality0 extends Personality{
 class Loves_Conveyer_Belts extends Personality{
     //loves conveyer belts
     def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
+        var localgame = game.copy
         //find my position
-        def findpos(game:Game=game):(Int, Int) = (game.robots(robotNumber-1).x, game.robots(robotNumber-1).y)
-        def findface(game:Game=game):Facing = game.robots(robotNumber-1).direction
+        def findpos(t:Game=localgame):(Int, Int) = (t.robots(robotNumber-1).x, t.robots(robotNumber-1).y)
+        def findface(t:Game=localgame):Facing = t.robots(robotNumber-1).direction
         //where will my cards take me?
+
         var localhand = hand
         val chosen:Array[Card] = Array.fill(7)(null)
         for(i<- 0 until 7){
             //println(chosen.map(a=> if(a==null) "n" else a.attribute.toString).mkString(", "))
-            val choices = localhand.map{card => 
+            val choices1 = localhand.map{card => 
                 val (x0, y0) = findpos()
-                val testgame = game.copy
+                val testgame = localgame.copy
                 testgame.playCard(robotNumber, card)
                 testgame.endRegisterPhase
                 val (x, y) = findpos(testgame)
                 val c = game.board(x)(y)
-                //println(c, x, y)
+                //println(card.attribute.toString, c=='U', y0 > y, findface(testgame)==North && findface()!=North,findface(testgame), c=='R' || c=='L' || c=='D', y0==y)
                 //give the conveyer belt pieces a higher priority
                 if(c=='U') (0, card)
                 //give cards that move upward next highest
@@ -348,13 +351,33 @@ class Loves_Conveyer_Belts extends Personality{
                 //at least dont go backwards
                 else if(y0==y) (4, card)
                 else (5, card)
-            }.sortBy(_._1).map(_._2)
+            }.sortBy(_._1)
+            //println(choices1.map(a=>a._1.toString+", "+a._2.attribute.toString).mkString(", "))
+            val choices = choices1.map(_._2)
             //println(choices.map(_.attribute.toString).mkString(", "))
             chosen(i) = choices.head 
-            game.playCard(robotNumber, choices.head)
+            //println("chose: " + choices.head.attribute.toString)
+            localgame.playCard(robotNumber, choices.head)
             localhand = (localhand.toSet - choices.head).toArray
         }
         chosen
+    }
+    def test{
+        val robotNumber = 1
+        val testgame = new Game
+        testgame.init
+        def play{
+            val deck = new Deck
+            val hand = Array.fill(7)(deck.draw)
+            val choices = placeCards(robotNumber,hand, testgame.copy)
+            println(choices.map(_.attribute.toString).mkString(", "))
+            for(i<-0 until 5) {
+                testgame.playCard(robotNumber, choices(i))
+                testgame.endRegisterPhase
+            }
+        }
+        play
+        play
     }
 }
 
