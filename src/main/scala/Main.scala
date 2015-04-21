@@ -33,15 +33,11 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
     card
   }
 
-  // override def doMove {
-  //   super.doMove
-  //   showPlayingArea
-  // }
-
-  // override def doTurn {
-  //   super.doTurn
-  //   showPlayingArea
-  // }
+  override def doTurn {
+    super.doTurn
+    showPlayingArea
+    Thread sleep 1000
+  }
 
   def showCardExec(text_to_update:String) {
     showPlayingArea
@@ -55,14 +51,8 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
   }
   
   def showGame = {
-    // showPlayerOrder
     showPlayingArea
   }
-
-  // def showPlayerOrder { 
-  //   val result = model.showPlayerOrder 
-  //   views.foreach(_.displayPlayerOrder(result))
-  // }
 
   def showPlayingArea {
     views.foreach(_.displayPlayingArea(model.game))
@@ -71,14 +61,5 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
     //  for(c<-l) tl+= c + " "
     //  println(tl)
     // }
-  }
-
-  // def advancePlayerOrder { 
-  //   val result = model.advancePlayerOrder 
-  //   views.foreach(_.displayPlayerOrder(result))
-  // }
-
-  // def checkForWinner(): Option[Player] = None
-  // initGame
- 
+  } 
 }

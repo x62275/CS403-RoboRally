@@ -1,6 +1,5 @@
 package proj
 
-// import java.awt.Dimension
 import scala.swing._
 import javax.swing.ImageIcon
 import java.awt.{Color, Image}
@@ -10,7 +9,6 @@ import scala.collection.mutable.Map
 abstract class View {
   var controller: Option[Controller] = None
   val frame = new MainFrame
-  // val playerOrderDisplay: Component
   val playingAreaDisplay: Component
 
   def init(ctrl: Controller) {
@@ -19,7 +17,6 @@ abstract class View {
     frame.title = "Robo Rally"
     frame.menuBar = createMenu
     frame.contents = new BoxPanel(Orientation.Vertical) {
-      // contents += playerOrderDisplay
       contents += playingAreaDisplay
     }
     frame.size = new Dimension(600, 800)
@@ -35,9 +32,6 @@ abstract class View {
         contents += new MenuItem(Action("All") {
           controller.get.showGame
         })
-        // contents += new MenuItem(Action("Player Order") {
-        //   controller.get.showPlayerOrder
-        // })
         contents += new MenuItem(Action("Playing Area") {
           controller.get.showPlayingArea
         })
@@ -48,10 +42,10 @@ abstract class View {
           controller.get.doTurn
           controller.get.showPlayingArea
         })
-        // contents += new MenuItem(Action("Do Move") {
-        //   controller.get.doMove
-        //   controller.get.showPlayingArea
-        // })
+        contents += new MenuItem(Action("Do Game") {
+          controller.get.doGame
+          controller.get.showPlayingArea
+        })
         contents += new MenuItem(Action("Restart") {
           controller.get.initGame
         })
@@ -62,27 +56,12 @@ abstract class View {
     }
   }
 
-  // def displayPlayerOrder(players: PlayerOrder)
   def displayCardExec(text: String)
   def displayPlayingArea(game: Game)
 }
 
 class TextView extends View {
-  // val playerOrderDisplay = new TextArea(1, 1) { background = awt.Color.yellow }
   val playingAreaDisplay = new TextArea(100, 1) { background = Color.white }
-
-  // def displayPlayerOrder(players: PlayerOrder) {
-  //   // playerOrderDisplay.text = players.show
-  //   playerOrderDisplay.text = "Name/Trains\tScore\tTrain & Destination Cards"
-  //   for (p <- players) {
-  //     playerOrderDisplay.text += "\n\n"
-  //     playerOrderDisplay.text += p.color.toString + "/" + p.count +"\t"
-  //     playerOrderDisplay.text += p.getScore.toString + "\t"
-  //     playerOrderDisplay.text += p.trainCards.mkString(",") + "\n\t\t"
-  //     playerOrderDisplay.text += p.dstCards.mkString(",")
-  //   }
-  //   // playerOrderDisplay.text = playerOrderDisplay.text.tail
-  // }
 
   def displayPlayingArea(game: Game) {
     playingAreaDisplay.text = ""
@@ -116,7 +95,6 @@ class GUI extends View {
     maximumSize = d
     minimumSize = d
     background = Color.cyan
-    // for (i <- 1 to 16*12) contents += genLabel(images("open"))
     labels.foreach(contents += _)
   }
   def genLabel(img: Image) = {
@@ -130,6 +108,11 @@ class GUI extends View {
       val imageIcon = new ImageIcon(img)
       icon = imageIcon
     }
+  }
+
+  override def init(ctrl: Controller) {
+    super.init(ctrl)
+    ctrl.showPlayingArea
   }
 
   def grabImage(c: Char): Image = c match {
@@ -158,9 +141,6 @@ class GUI extends View {
     case ']' => images("right_wall")
     case 'T' => images("top_wall")
     case 'B' => images("bottom_wall")
-
-
-    case _ => images("red_home")
   }
   
   def displayCardExec(text: String) { }
