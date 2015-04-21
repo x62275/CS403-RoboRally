@@ -48,10 +48,10 @@ abstract class View {
           controller.get.doTurn
           controller.get.showPlayingArea
         })
-        contents += new MenuItem(Action("Do Move") {
-          controller.get.doMove
-          controller.get.showPlayingArea
-        })
+        // contents += new MenuItem(Action("Do Move") {
+        //   controller.get.doMove
+        //   controller.get.showPlayingArea
+        // })
         contents += new MenuItem(Action("Restart") {
           controller.get.initGame
         })
@@ -103,13 +103,13 @@ class GUI extends View {
   //load images
   val dir = new File("img")
   for (img <- dir.listFiles.map(_.toString)) {
-    images(img.slice(4,img.length - 4)) = new ImageIcon(img).getImage.getScaledInstance(25,25,Image.SCALE_DEFAULT)
+    images(img.slice(4,img.length - 4)) = new ImageIcon(img).getImage.getScaledInstance(25,25,Image.SCALE_SMOOTH)
   }
 
   val labels = Array.fill(16*12)(genLabel(images("open")))
   val len = 16
   val width = 12
-  val playingAreaDisplay = new GridPanel(width, len) {
+  val playingAreaDisplay = new GridPanel(len, width) {
     val d = new Dimension(30*width, 30*len)
     preferredSize = d
     maximumSize = d
@@ -133,8 +133,11 @@ class GUI extends View {
 
   def grabImage(c: Char): Image = c match {
     case 'X' => images("open")
-    case '$' => images("flag_1")
     case 'H' => images("hole")
+
+    case '$' => images("flag_1")
+    case '%' => images("flag_2")
+    case '&' => images("flag_3")
 
     case '1' => images("green_robot")
     case 'g' => images("green_home")
