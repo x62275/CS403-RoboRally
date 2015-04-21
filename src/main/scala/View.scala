@@ -106,27 +106,65 @@ class GUI extends View {
     images(img.slice(4,img.length - 4)) = new ImageIcon(img).getImage.getScaledInstance(25,25,Image.SCALE_DEFAULT)
   }
 
+  val labels = Array.fill(16*12)(genLabel(images("open")))
   val len = 16
   val width = 12
   val playingAreaDisplay = new GridPanel(width, len) {
-    val d = new Dimension(28*width, 28*len)
+    val d = new Dimension(30*width, 30*len)
     preferredSize = d
     maximumSize = d
     minimumSize = d
     background = Color.cyan
-    for (i <- 1 to 16*12) contents += new Label {
-      val d = new Dimension(25,25)
+    // for (i <- 1 to 16*12) contents += genLabel(images("open"))
+    labels.foreach(contents += _)
+  }
+  def genLabel(img: Image) = {
+    new Label {
+      val d = new Dimension(30,30)
       preferredSize = d
       maximumSize = d
       minimumSize = d
       verticalAlignment = Alignment.Top
       horizontalAlignment = Alignment.Left
-      icon = new ImageIcon(images("open"))
+      val imageIcon = new ImageIcon(img)
+      icon = imageIcon
     }
+  }
+
+  def grabImage(c: Char): Image = c match {
+    case 'X' => images("open")
+    case '$' => images("flag_1")
+    case 'H' => images("hole")
+
+    case '1' => images("green_robot")
+    case 'g' => images("green_home")
+    case '2' => images("blue_robot")
+    case 'b' => images("blue_home")
+    case '3' => images("red_robot")
+    case 'r' => images("red_home")
+    case '4' => images("purple")
+    case 'p' => images("purple_home")
+
+    case 'L' => images("left_conveyer")
+    case 'R' => images("right_conveyer")
+    case 'U' => images("up_conveyer")
+    case 'D' => images("down_conveyer")
+
+    case '[' => images("left_wall")
+    case ']' => images("right_wall")
+    case 'T' => images("top_wall")
+    case 'B' => images("bottom_wall")
+
+
+    case _ => images("red_home")
   }
   
   def displayCardExec(text: String) { }
   def displayPlayingArea(game: Game) {
-
+    val b = game.textGameArea.flatten
+    for (i <- b.indices) {
+      labels(i).imageIcon.setImage(grabImage(b(i)))
+      playingAreaDisplay.repaint()
+    }
   }
 }
