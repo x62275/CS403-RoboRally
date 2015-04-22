@@ -2,6 +2,7 @@ package proj
 
 import scala.swing._
 import javax.swing.ImageIcon
+import javax.swing.SwingUtilities
 import java.awt.{Color, Image}
 import java.io.File
 import scala.collection.mutable.Map
@@ -147,8 +148,9 @@ class GUI extends View {
   def displayPlayingArea(game: Game) {
     val b = game.textGameArea.flatten
     for (i <- b.indices) {
+      //labels(i) = genLabel(grabImage(b(i)))
       labels(i).imageIcon.setImage(grabImage(b(i)))
-      playingAreaDisplay.repaint()
+      playingAreaDisplay.repaint();
     }
   }
 }

@@ -30,15 +30,23 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
   override def doExecute(p:Int, currentPhase:Int):Card = {
     val card = super.doExecute(p, currentPhase)
     showCardExec("player " + p.toString + " executes " + card.attribute.toString)
+    Thread sleep 500
     card
   }
-
   override def doTurn {
-    super.doTurn
-    showPlayingArea
-    Thread sleep 1000
+    val t = new Thread(new Runnable() {
+          def run() {
+            val po = model.po
+            val board = model.game
+            for(i<-po.players.indices)
+                doMove
+            for(currentPhase<-0 until 5)
+                doRegisterPhase
+            board.endTurn
+          }
+    });
+    t.start();
   }
-
   def showCardExec(text_to_update:String) {
     showPlayingArea
     views.foreach(_.displayCardExec(text_to_update))
