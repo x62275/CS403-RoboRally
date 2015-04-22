@@ -2,7 +2,6 @@ package proj
 
 import scala.swing._
 import javax.swing.ImageIcon
-import javax.swing.SwingUtilities
 import java.awt.{Color, Image}
 import java.io.File
 import scala.collection.mutable.Map

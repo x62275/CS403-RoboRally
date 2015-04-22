@@ -33,20 +33,6 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
     Thread sleep 500
     card
   }
-  override def doTurn {
-    val t = new Thread(new Runnable() {
-          def run() {
-            val po = model.po
-            val board = model.game
-            for(i<-po.players.indices)
-                doMove
-            for(currentPhase<-0 until 5)
-                doRegisterPhase
-            board.endTurn
-          }
-    });
-    t.start();
-  }
   def showCardExec(text_to_update:String) {
     showPlayingArea
     views.foreach(_.displayCardExec(text_to_update))

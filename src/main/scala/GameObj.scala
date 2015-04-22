@@ -296,21 +296,34 @@ class GameSim(board:Game, po:PlayerOrder){
         for(i<-selection.dropRight(2)) s+= " "+i.attribute.toString
         println(s)
     }
-    def doTurn{
-        //get card selections from players
+    def turnmotions{
         for(i<-po.players.indices)
             doMove
         for(currentPhase<-0 until 5)
             doRegisterPhase
         board.endTurn
     }
+    def doTurn{
+        //get card selections from players
+        val t = new Thread(new Runnable() {
+            def run() {
+                turnmotions
+            }
+        });
+        t.start();
+    }
     def doGame{
-        var turnNum = 0
-        //board.init
-        while(checkWin==0 && turnNum < 100) {
-            doTurn
-            turnNum +=1
-        }
+        val t = new Thread(new Runnable() {
+            def run() {
+                var turnNum = 0
+                //board.init
+                while(checkWin==0 && turnNum < 100) {
+                    turnmotions
+                    turnNum +=1
+                }
+            }
+        });
+        t.start();
     }
 }
 
