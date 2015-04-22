@@ -448,8 +448,8 @@ class Shortest_Path extends Personality {
                 //do tests to determine weight
                 var weight = 0
                 if(findangle(xe, ye)==fe) weight += 2
-                if(enddist < startdist) weight += (startdist-enddist).toInt
-                if( (endchar=='$' && lookingfor==0) || (endchar=='%' && lookingfor==1) || (endchar=='&' && lookingfor==2) )
+                if(enddist <= startdist) weight += (startdist-enddist).toInt max 1
+                if( testgame.robots(robotNumber-1).getFlag > lookingfor )
                     weight = Int.MaxValue
                 collection = (p, weight) +: collection
             }
@@ -466,11 +466,10 @@ class Greedy_George extends Personality {
         def position(t:Game=game):(Int, Int) = (t.robots(robotNumber-1).x, t.robots(robotNumber-1).y)
         //decide what flag you're on
         var lookingfor = game.robots(robotNumber-1).getFlag
+        var (x, y) = game.flags(lookingfor)
         println(robotNumber.toString+" is looking for flag "+lookingfor.toString)
         //find starting position
         var (x0:Int, y0:Int) = position()
-        //find the flag
-        var (x, y) = game.flags(lookingfor)
         //find the general direction of the flag
         def findangle(xn:Int=x0, yn:Int=y0) = {
             var angle = Math.toDegrees(Math.atan2(x - xn, y - yn));
@@ -484,13 +483,15 @@ class Greedy_George extends Personality {
         var chosen:Array[Card] = Array.fill(5)(null)
         var n = 1
         def getFirstMovement:Array[Card] = {
+            var collection:List[(Array[Card],Int)] = List()
             for(c <- localhand.combinations(n)){
                 for(p <- c.permutations){
                     //play out p
-                    return p
+                    //collection = (p, weight) +: collection
+                    //if the robot lands on the correct flag, return p
                 }
             }
-            hand  //remove
+            collection.maxBy(_._2)._1
         }
         while(chosen.length < 5 && n <= 5){
             val t = getFirstMovement
