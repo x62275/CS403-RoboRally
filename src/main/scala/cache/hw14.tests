@@ -1,0 +1,639 @@
+3 (0 1 'E' 0 2 'E' 1 2 '?')
+"A"
+6 (0 1 'A' 1 2 'A' 0 2 '?' 3 4 'A' 4 5 'A' 1 4 '?' 0 5 'E' 2 3 '?')
+"A?E"
+8 (0 1 'A' 1 2 'A' 2 3 'A' 0 3 '?' 4 5 'A' 6 7 'A' 4 6 'A' 5 7 '?')
+"AA"
+9 (0 1 '?' 0 2 'A' 0 1 '?' 2 3 'E' 0 1 '?' 4 5 'E' 0 1 '?' 1 5 'A' 0 1 '?' 3 4 'E' 0 1 '?')
+"?????E"
+9 (0 1 '?' 0 2 'A' 0 1 '?' 2 3 'E' 0 1 '?' 4 5 'E' 0 1 '?' 1 5 'A' 0 1 '?' 3 4 'A' 0 1 '?')
+"?????A"
+3 (0 1 'A' 1 2 'E')
+""
+3 (0 1 'A' 1 0 'A' 0 2 '?')
+"?"
+5 (0 1 'A' 1 2 'A' 3 4 '?')
+"?"
+18 (9 11 'A' 12 17 'A' 11 7 'E' 14 1 'A' 17 1 '?' 7 10 'E' 7 13 'A' 12 17 '?' 11 1 '?' 10 11 '?' 15 4 'A' 9 4 '?' 10 13 '?' 17 1 '?' 4 0 'A' 1 15 '?' 12 8 'A' 12 8 '?' 17 14 'A' 1 5 'A' 0 1 'A' 11 8 '?' 2 12 'A' 11 5 '?' 10 2 '?' 15 7 '?' 5 2 '?' 11 9 '?' 1 2 '?' 10 5 'A' 14 0 '?')
+"?A?A?E??A????AAAA"
+18 (9 13 'A' 10 1 'A' 13 9 '?' 9 13 '?' 11 9 'A' 11 9 '?' 4 17 'A' 0 4 'A' 4 9 '?' 7 16 'A' 0 7 '?' 11 9 'A' 7 6 'A' 17 7 '?' 10 13 '?' 10 16 '?' 10 11 '?' 7 16 '?' 6 9 '?' 6 7 'A' 16 11 '?' 17 7 '?' 0 13 '?' 9 17 '?' 12 15 'A' 5 6 'A' 9 15 '?' 16 17 '?' 13 1 'A' 11 9 'A' 16 4 '?')
+"AAA??????A????????"
+10 (2 3 'A' 3 7 'A' 7 8 'A' 3 7 '?' 8 7 '?' 3 2 '?' 2 7 '?' 4 3 'A' 4 9 'E' 9 0 'E' 8 9 '?' 1 4 'A' 1 7 '?' 7 3 '?' 4 2 '?' 4 8 '?' 8 2 'A')
+"AAAAEAAAA"
+6 (3 4 'A' 4 3 '?' 1 2 'A' 3 1 '?' 5 4 'A' 3 1 'A' 1 0 'A' 0 3 '?' 2 5 '?' 0 4 '?')
+"A?AAA"
+17 (4 16 'A' 9 14 'A' 1 15 'A' 1 14 '?' 8 6 'A' 5 15 'A' 5 16 '?' 14 6 '?' 11 3 'E' 12 16 'A' 12 15 '?' 15 11 'A' 5 16 'A' 5 6 'A' 1 11 '?' 0 8 'A' 15 6 '?' 6 15 '?' 10 0 'A' 0 11 '?' 3 16 '?' 10 1 '?' 11 9 '?' 0 4 '?' 6 10 '?' 3 10 '?' 14 9 '?' 9 11 '?' 1 0 '?')
+"????AAAAEA?AAEA?A"
+5 (1 2 'A' 2 1 '?' 1 0 'A' 1 2 'A' 1 0 '?' 0 1 '?' 2 0 '?' 1 0 '?')
+"AAAAA"
+14 (3 11 'A' 11 3 '?' 9 8 'A' 7 3 'E' 3 8 '?' 9 12 'A' 6 3 'E' 7 2 'A' 3 2 '?' 8 6 '?' 7 1 'E' 7 6 '?' 10 4 'E' 10 8 'E' 6 10 '?' 9 12 '?' 10 0 'E' 11 10 '?' 7 3 '?' 9 7 '?' 11 12 '?' 13 12 'E' 8 7 '?' 12 13 '?')
+"A?E?A?A?E???E"
+19 (8 9 'E' 8 9 '?' 7 11 'E' 0 8 'E' 7 8 '?' 9 7 '?' 8 11 '?' 8 0 'E' 7 8 '?' 7 11 '?' 12 18 'A' 3 15 'A' 13 3 'E' 18 11 '?' 0 13 'E' 15 13 '?' 18 11 '?' 10 17 'A' 8 10 '?' 1 12 'E' 9 8 '?' 9 4 'E' 4 3 '?' 18 2 'E' 13 17 '?' 17 10 'A' 8 18 'E' 0 7 'A' 4 9 '?' 1 15 '?' 12 3 '?' 8 13 '?' 12 8 '?')
+"E????E?E??EE?EEAAE"
+16 (0 10 'E' 4 8 'E' 9 13 'E' 8 3 'E' 10 3 '?' 10 13 '?' 14 0 'A' 8 13 '?' 10 4 'E' 5 6 'A' 13 3 '?' 11 6 'E' 10 13 '?' 13 11 '?' 2 12 'E' 9 5 'E' 14 11 'E' 8 4 '?' 6 4 'A' 0 14 '?' 13 7 'A' 2 9 '?' 11 5 '?' 11 14 '?' 7 8 '?' 13 4 '?' 4 5 'A' 12 6 '?')
+"??????EA?EEEA?"
+15 (6 13 'E' 0 6 'A' 6 14 'A' 13 9 'E' 6 14 '?' 0 13 '?' 7 9 'E' 9 12 'E' 4 5 'A' 5 4 '?' 8 4 'A' 6 5 '?' 12 4 'E' 0 6 '?' 5 0 '?' 11 4 'A' 4 9 '?' 11 8 'A' 13 1 'E' 1 0 '?' 8 4 '?' 3 0 'A' 7 0 '?' 7 13 '?' 13 8 '?' 4 5 '?')
+"AEA?AAAAAEAEA"
+10 (0 5 'A' 0 5 '?' 6 4 'E' 2 8 'A' 0 5 '?' 5 7 'A' 0 8 '?' 8 4 '?' 4 0 '?' 6 9 'E' 5 7 'A' 2 8 '?' 0 8 '?' 5 2 '?' 0 9 '?' 4 7 '?' 4 9 '?')
+"AA???A????A"
+7 (0 3 'E' 5 0 'A' 3 0 '?' 5 0 '?' 5 3 'E' 3 0 '?' 1 3 'E' 0 3 '?' 1 5 '?' 0 1 '?' 0 1 '?' 1 5 '?')
+"EAEEAAAA"
+7 (1 3 'E' 4 0 'A' 2 3 'A' 0 6 'A' 1 3 'E' 2 3 '?' 3 6 '?' 1 2 '?' 3 0 '?' 6 4 '?' 2 6 '?' 2 0 'A')
+"A?E?A?"
+15 (13 0 'E' 7 3 'E' 0 13 '?' 10 7 'E' 9 5 'E' 7 10 '?' 13 0 'E' 13 3 '?' 13 0 '?' 7 13 '?' 9 0 'A' 0 3 '?' 13 9 'E' 9 13 '?' 7 9 '?' 0 10 '?' 9 0 '?' 8 7 'E' 10 5 '?' 3 13 '?' 5 0 '?' 10 9 '?' 11 0 'A' 13 9 '?' 1 9 'A' 9 10 '?')
+"EE?E??E??A??E?E?"
+17 (11 1 'A' 8 6 'E' 4 7 'E' 14 16 'A' 1 4 '?' 13 14 'A' 6 11 '?' 8 16 '?' 11 16 '?' 7 13 '?' 11 3 'E' 16 8 '?' 10 1 'A' 11 6 '?' 13 9 'A' 16 11 'A' 6 3 '?' 14 13 '?' 5 0 'A' 0 13 'A' 11 9 'A' 14 5 '?' 11 13 'A' 5 14 '?' 4 16 'E' 5 14 '?' 8 6 '?' 4 10 'E' 0 8 '?')
+"????????AAAAE?"
+19 (15 14 'A' 3 2 'A' 2 15 '?' 10 15 'E' 1 8 'E' 15 10 '?' 10 4 'A' 14 10 '?' 14 3 '?' 4 2 'A' 3 13 'A' 5 16 'A' 13 8 '?' 15 3 '?' 2 3 '?' 16 14 '?' 3 11 'A' 5 4 '?' 5 1 '?' 3 14 '?' 13 1 '?' 0 2 'A' 13 16 '?' 16 8 '?' 7 10 'A' 16 14 '?' 11 14 '?' 0 13 '?' 8 0 'E' 2 6 'A' 16 8 'E' 10 7 '?' 7 2 '?')
+"?EE??EA???E????EAAA"
+9 (6 5 'A' 5 3 'A' 4 6 'A' 1 8 'A' 6 4 'A' 1 8 '?' 3 8 'A' 8 6 'A' 6 3 '?' 3 4 '?' 3 8 '?' 1 4 '?' 4 5 'A' 6 3 '?' 3 1 '?')
+"AAAAAAA"
+16 (6 13 'A' 12 13 'A' 1 0 'A' 14 3 'A' 2 14 'A' 11 3 'E' 11 3 '?' 6 1 '?' 11 0 '?' 5 4 'E' 5 12 'E' 3 13 '?' 1 10 'E' 0 13 '?' 9 7 'E' 7 14 '?' 6 13 '?' 9 12 '?' 0 14 '?' 6 11 'A' 12 10 '?' 3 0 '?' 11 8 'E' 4 8 'E' 6 14 '?' 0 10 'E' 6 13 '?' 14 7 '?')
+"E?????A????EA?"
+8 (4 0 'E' 4 0 '?' 5 7 'A' 7 0 '?' 3 5 'E' 3 4 '?' 3 4 '?' 5 0 'A' 6 1 'A' 3 4 '?' 0 4 'E' 0 3 '?' 7 0 '?' 0 1 '?')
+"E???AEA?"
+6 (3 2 'A' 3 5 'A' 5 3 '?' 3 2 'A' 3 5 '?' 3 5 '?' 2 3 '?' 5 3 '?' 4 5 'E' 2 4 '?')
+"AAAAAE"
+16 (12 15 'A' 15 11 'A' 10 13 'A' 6 4 'A' 0 4 'A' 13 0 '?' 10 13 '?' 14 3 'A' 11 12 '?' 6 0 '?' 2 12 'A' 8 12 'A' 3 12 '?' 3 13 '?' 2 3 '?' 2 15 '?' 15 8 'A' 11 0 '?' 3 14 '?' 12 4 '?' 2 10 '?' 11 8 '?' 4 13 '?' 0 6 'A' 8 0 'A' 14 15 'A' 11 3 '?' 13 3 '?')
+"?AAA???A?A??A?A?"
+13 (5 4 'A' 4 9 'A' 3 2 'A' 8 12 'E' 4 8 '?' 7 9 'A' 6 7 'A' 4 2 '?' 5 9 '?' 4 7 '?' 6 12 'A' 7 12 '?' 3 8 '?' 5 2 '?' 3 5 '?' 12 11 'A' 2 6 '?' 5 3 '?' 11 4 '?' 8 5 '?' 9 5 '?' 7 6 '?')
+"??AAA?????AEAA"
+13 (4 3 'A' 3 5 'A' 12 2 'A' 9 7 'E' 4 2 '?' 12 3 '?' 7 3 'A' 3 6 'A' 6 2 '?' 3 2 '?' 2 9 '?' 3 2 '?' 5 12 '?' 12 4 '?' 7 8 'A' 5 8 '?' 6 1 'E' 3 11 'A' 7 11 '?' 3 7 'A' 10 11 'A' 12 1 '?')
+"????????AA?"
+17 (8 9 'A' 2 5 'A' 6 8 'A' 2 9 'A' 14 15 'A' 3 9 'A' 2 9 '?' 7 16 'A' 6 16 'A' 7 2 'A' 6 2 '?' 5 10 'A' 8 7 '?' 12 10 'A' 7 5 'A' 3 10 '?' 16 3 '?' 14 13 'A' 5 9 '?' 4 16 'E' 16 7 '?' 12 13 '?' 15 13 '?' 8 5 '?' 4 13 '?' 8 7 '?' 4 5 '?' 0 12 'A' 15 4 '?')
+"AAAAAAA?AA?AE?"
+18 (11 14 'E' 11 14 '?' 4 11 'E' 17 15 'A' 17 11 '?' 3 14 'A' 5 9 'A' 15 1 'E' 14 17 '?' 11 9 '?' 14 5 '?' 1 2 'E' 9 11 '?' 1 3 '?' 14 11 '?' 9 17 '?' 4 10 'A' 1 11 '?' 6 17 'A' 5 2 'A' 16 10 'A' 8 1 'A' 4 16 '?' 4 3 '?' 10 6 '?' 8 0 'A' 11 15 '?' 6 2 '?' 0 15 '?' 0 17 '?' 5 10 '?')
+"E??????E??AA??AEE?"
+16 (0 6 'E' 2 15 'A' 7 4 'E' 3 8 'E' 14 5 'E' 7 15 '?' 4 2 'E' 1 7 'E' 14 3 'E' 0 4 '?' 6 15 'A' 14 11 'A' 7 1 '?' 2 3 '?' 11 15 '?' 2 11 '?' 6 0 '?' 15 14 '?' 2 8 '?' 0 11 '?' 3 2 'A' 6 5 '?' 1 4 '?' 5 0 '?' 2 3 '?' 3 14 '?' 2 4 'E' 7 4 '?')
+"??E???E???AAEAEE"
+10 (4 9 'E' 4 9 '?' 9 4 '?' 0 7 'A' 8 4 'A' 5 1 'E' 6 1 'A' 1 6 'A' 2 0 'E' 7 5 '?' 5 1 '?' 7 3 'A' 1 3 'A' 4 0 '?' 2 8 '?' 4 1 '?' 6 1 '?')
+"EE?E???A"
+6 (1 4 'A' 1 4 '?' 3 4 'E' 3 5 'A' 3 1 '?' 0 5 'E' 4 5 '?' 1 4 '?' 1 5 '?' 0 1 '?')
+"AEEAEA"
+14 (4 2 'A' 7 1 'E' 1 13 'A' 3 2 'A' 10 4 'A' 10 3 '?' 2 7 '?' 5 9 'E' 3 11 'A' 4 9 '?' 2 11 '?' 9 11 'E' 6 11 'E' 5 7 '?' 1 0 'E' 4 11 '?' 11 10 '?' 11 1 'A' 10 9 'E' 3 6 '?' 0 1 'E' 3 5 '?' 7 10 '?' 9 7 '?')
+"A??A?AAEAEA"
+16 (14 2 'A' 1 2 'A' 1 14 '?' 15 5 'A' 14 2 '?' 1 5 'E' 5 15 'A' 2 1 '?' 5 14 '?' 3 0 'A' 5 14 '?' 5 0 '?' 5 0 '?' 2 10 'E' 3 5 '?' 2 15 '?' 0 14 '?' 2 5 '?' 0 5 '?' 1 13 'A' 0 12 'A' 3 14 '?' 15 0 'E' 12 5 '?' 1 12 '?' 0 13 '?' 13 15 '?' 15 10 '?')
+"AAAEE???E?E??EAAEA"
+4 (1 2 'A' 2 1 '?' 3 1 'A' 1 2 '?' 3 1 '?' 2 3 '?' 2 1 '?')
+"AAAAA"
+20 (14 12 'E' 12 17 'A' 8 14 'A' 14 17 '?' 4 18 'A' 14 16 'A' 8 16 'A' 3 8 'A' 6 18 'A' 15 18 'A' 3 15 '?' 16 17 '?' 12 17 '?' 9 5 'A' 14 16 'A' 5 0 'A' 12 5 '?' 12 13 'E' 9 6 '?' 13 17 '?' 16 9 '?' 9 1 'A' 5 16 '?' 5 15 '?' 14 12 '?' 15 0 '?' 14 1 '?' 4 16 '?' 17 15 '?' 18 17 '?' 3 5 '?' 9 15 '?' 14 9 '?' 2 15 'A' 3 9 '?')
+"E?EA??E???E?????????"
+5 (1 3 'A' 3 1 '?' 1 3 '?' 3 1 '?' 2 3 'A' 2 3 '?' 3 2 '?' 3 2 '?')
+"AAAAAA"
+17 (7 2 'E' 2 7 '?' 9 1 'E' 7 2 '?' 15 8 'A' 11 13 'E' 14 12 'A' 1 9 'E' 0 2 'E' 15 7 '?' 1 12 'E' 9 13 '?' 1 8 'E' 15 0 '?' 7 12 '?' 12 14 'A' 8 10 'A' 1 7 'A' 14 16 'A' 12 11 '?' 16 7 'E' 13 11 '?' 8 0 '?' 14 9 '?' 8 12 '?' 9 1 '?' 10 16 '?' 1 11 '?' 12 13 '?')
+"EE?????EEAAEA??"
+10 (8 3 'A' 2 9 'A' 3 0 'A' 0 7 'A' 8 6 'A' 5 7 'A' 9 5 '?' 6 7 '?' 1 0 'A' 9 3 '?' 0 9 '?' 7 3 'A' 6 9 '?' 5 3 '?' 6 3 '?' 6 8 '?' 0 6 '?')
+"?A???AAAA"
+20 (10 7 'E' 8 1 'A' 2 6 'E' 4 0 'A' 10 6 '?' 4 2 '?' 10 11 'A' 5 9 'A' 4 5 '?' 10 17 'E' 4 5 'A' 0 17 '?' 2 4 '?' 15 5 'A' 9 11 '?' 1 5 'E' 15 7 '?' 17 1 '?' 10 8 'A' 10 8 '?' 6 11 '?' 6 7 'A' 11 4 '?' 10 6 '?' 9 17 '?' 0 17 '?' 9 5 '?' 9 2 '?' 16 15 'A' 14 9 'A' 9 7 '?' 1 12 'A' 17 5 '?' 15 11 'E' 9 15 '?')
+"????????A?EEAAAEAAA"
+16 (9 10 'E' 7 9 'A' 1 10 'A' 9 4 'A' 7 4 '?' 4 13 'A' 9 10 '?' 6 13 'E' 9 6 '?' 7 15 'A' 15 7 '?' 15 10 '?' 6 13 '?' 13 7 'A' 6 10 'A' 7 1 '?' 13 1 '?' 3 8 'E' 10 13 '?' 6 15 'E' 10 9 '?' 10 1 '?' 3 15 '?' 6 7 '?' 3 13 '?' 4 1 '?' 7 10 '?' 7 5 'A')
+"AEEAEEEEEEA?E?EE"
+13 (5 8 'A' 6 0 'A' 8 5 '?' 9 6 'A' 11 8 'A' 8 0 '?' 12 6 'A' 12 8 '?' 2 1 'A' 5 6 '?' 0 6 'A' 9 2 '?' 11 9 '?' 0 12 '?' 5 11 '?' 6 12 '?' 7 1 'A' 12 5 'A' 1 3 'A' 9 0 '?' 0 1 '?' 8 6 '?')
+"A?????AAAA?A"
+14 (2 10 'E' 12 3 'A' 11 8 'E' 10 12 '?' 3 1 'A' 12 9 'A' 2 11 '?' 8 11 '?' 10 7 'A' 3 2 '?' 7 3 '?' 1 11 '?' 12 11 'E' 10 9 'A' 9 3 'A' 2 12 '?' 12 2 '?' 11 3 '?' 2 13 'E' 13 2 '?' 2 7 '?' 2 8 '?' 2 9 '?' 1 13 '?')
+"??E???EEEEEEEA"
+6 (5 4 'A' 5 4 'A' 5 4 '?' 4 5 'A' 4 5 '?' 4 5 '?' 4 5 '?' 4 5 '?' 0 3 'A' 5 3 '?')
+"AAAAA?"
+$
+"
+///////
+/WW.BB/
+/.WWWW/
+/WWBBB/
+/BBBWW/
+/WWBW./
+///////"
+2 11
+"
+////
+/BB/
+/WW/
+////"
+0 0
+"
+////
+/WW/
+/W./
+////"
+0 3
+"
+////
+/WW/
+/.B/
+////"
+1 2
+"
+////
+/WB/
+/.W/
+////"
+0 2
+"
+///////
+/BWWWW/
+/BBWBW/
+/..BB./
+/.B.BW/
+/.WBBW/
+///////"
+10 9
+"
+///////
+/.WWBW/
+/WB.WW/
+/.BWB./
+/WWWBB/
+/BWW.W/
+///////"
+5 13
+"
+///////
+/.BBBW/
+/WWWBB/
+/WBBBW/
+/.BWBW/
+/.BBWB/
+///////"
+12 4
+"
+///////
+/BBB.B/
+/WBWBW/
+/BBWBW/
+/BWW.B/
+/BBWWW/
+///////"
+13 7
+"
+///////
+/WBW.W/
+/WWB../
+/BWW.B/
+/BWBW./
+/WBBB./
+///////"
+6 9
+"
+////////////
+/B.BB.W.WB./
+/.WWBWBWWWB/
+/BWWBBB.BWB/
+/BWWBWBBBWW/
+/.BWBWBWWWW/
+/BBW.B.BBWW/
+/BBB..WBWW./
+/WBBB.WWWW./
+/WBWWBWB.WB/
+/.W..WWWWBB/
+////////////"
+39 41
+"
+////////////
+/B..WBWWBBB/
+/BWB.WBB.WB/
+/B.BBBWBBBB/
+/BWB....BBW/
+/WBBBWB.WWB/
+/W.BWWBW.BW/
+/WBBBWBWWWW/
+/WBWWB.BWWB/
+/.BWWWBB.WB/
+/WWW.W.B..B/
+////////////"
+42 34
+"
+////////////
+/BWBWWWWBBB/
+/.BW.B.WWWW/
+/BBWBWBWWWB/
+/BBBBB..WBB/
+/..BWBBBWB./
+/BWWBBWWW.W/
+/WWWBBBB.BB/
+/BWWBB..WWW/
+/BWWBBWBWWW/
+/....B.B.W./
+////////////"
+38 36
+"
+////////////
+/WW.WBB..WB/
+/..BWWWBWWB/
+/...BB.B.BW/
+/BBWBB.W.BB/
+/.W.WWWB.WB/
+/WBBBBBBB../
+/.BB.WWBB.B/
+/WWWBB.WWWW/
+/B.BBWB.BWB/
+/WWBWBBWWBB/
+////////////"
+38 31
+"
+////////////////
+/BBWWBBBWBWW.B./
+/.WW.BWBWBWWWBB/
+/.WBWB...BB.WBW/
+/W.WWWBWBWBW..W/
+/BWBBBWBWWB.BBW/
+/.WWWBWB.BBBBBW/
+/BB.B.BW.B..WBW/
+/BBWWBWW..BBWBB/
+/WBBB.WWBW.WWBW/
+/WWWBBBBBWBWBBW/
+/WBBWWWBW.BWWBB/
+/WBW..B.B.WW..W/
+/BW.WBWWW.WWBBB/
+/WWW.BBBBBB..BB/
+////////////////"
+78 67
+"
+/////////////////
+/BBWWBBWWBW.BWBW/
+/.BB..WWWB..WWWW/
+/WBWBBWBWBBWWBWW/
+/W.W.BW..B.BW.WB/
+/BWW.WB.B.WBBBW./
+/WWW..BW.WBB.WW./
+/.B.BW..BBB.BBWW/
+/WWBW..BBWB.BBBB/
+/.W.BWW.WBBW.W.B/
+/WB.B.BBBWW..WWW/
+/BW.WBW.WWBBWW.B/
+/BBWW...BBBWBWBW/
+/BBW..WWWWWWBWBB/
+/WBBWBWWW.BBW.B./
+/B.WWBW.WW.WBBWB/
+/////////////////"
+78 87
+"
+//////////////////
+/.WBBBBW.B.BWBW.B/
+/BBBWB.WBWW.BWW../
+/WWBBBWBWWW...BBB/
+/WBBBWWWB.BBBWBWB/
+/WB.WW.WBW.BBWBBB/
+/BWWWBWWWWB.B..BB/
+/W..W.BWBWWBBBB.B/
+/BWWW..B.BW.BBWWB/
+/.WWBBWWBWWBBBBBB/
+/BBBWWBBWBBBWB.BB/
+/.BBBBB.WBBBWBBBW/
+/WB.WW.BBB.BWBWWW/
+/WWW.W.BBBBBW.BWB/
+/WWBWWBBB..W...WB/
+/WWBBWBBBWW.WBWBB/
+/WWBW.WB.B.WWWWWW/
+//////////////////"
+105 86
+"
+/////////////////////
+/B.BBW.BB.W..WWBWWBB/
+/W..WW.WWW.W.W.WB.../
+/WB..BW.B...W.W.WW.W/
+/BWBW.BBBBW.W.WWW.BW/
+/WWBW..BBWBBWWBW..BW/
+/BBBBWW.W..BW.WWWBWW/
+/BWWWWW.BBB.WBW.W.BB/
+/WBBBWW.BWW..WBWBWWB/
+/WWWW.WW.BWBBB.BWW.B/
+/.WB.BBBBWBWBBWWW..W/
+/BWBBBBW.WBBWB.WBWB./
+/BBWW.BWW.BBW.WB..WW/
+/.B.BWBWBW.WBBWWWWB./
+/WBWW.WBWWWBWW.BBW.B/
+/WWWBB.BWBB.B.WWW.B./
+/.W.WWWWBBWBW.WBB.BB/
+/B.WBWBWWBB.BBBBBBWW/
+/WBBW.WWWW.WW.W..BBW/
+/WBWBWWBWBW..BW.BBWB/
+/////////////////////"
+112 139
+"
+/////////////////////
+/.BW.BBBW.BB.WBB.BWW/
+/...BW.B.WBWBBWBBWWW/
+/WW..WBWW.W...W...WB/
+/.WWWW.WWBBWB.BW.WBB/
+/WWW.WW..WBBWBW.WBBB/
+/.WWB..BWBWWWBBBB.WB/
+/WWWBBWWBB.BBBWBBW.W/
+/B.W...B.B.BB.WWWB.B/
+/.WW.BBBB.WB..BBBBWB/
+/....WB.WWBBBBW.WWBB/
+/BWB..W.BB..BWW.BB.B/
+/..BBB.WBWW.BWWBWWW./
+/BBWBWWW.WB.BWWB.WWW/
+/.WBBWWWB.WBBWBWWWWW/
+/WWWWBBBWWBBBBBWB.WW/
+/.WBBWWWB.B.BWWWB.WB/
+/BBB.B.WBWWBWB.BWWWW/
+/W.BBWWW.WWWBBBB.BWB/
+/WWBBBWWBWWBW.WWBWBB/
+/////////////////////"
+129 140
+"
+/////////////////////
+/.WWBBWBBB.WWWBW.W.W/
+/WW..WBWBWBBWBBBBWWW/
+/W.WBBBBBBWBBBB.B.BW/
+/.BWBB.BBWW..W.W..BW/
+/BWW.WWBW.BW.W.WWW.W/
+/BWBWBBBBBWWW.WW.BWB/
+/BBBB.B.WWBBB.W.BWBB/
+/BB..W.BW.WBWBBBBBW./
+/BWB.BWBW..WWWBWWWWW/
+/.BBBB.WW.BWBWWWBBWW/
+/BBBBWW..WBW..WWWW../
+/W.WWWBBBWWWWBBWBBW./
+/BBWBWWBB.BW..WBBWWB/
+/BBBBWBB.BWBWBBWB.BB/
+/BWBB.WWW.BW.BB.B.../
+/BBWWWW.W.BBWBWWBW.W/
+/..WBB.B.WWBBWBBBBWW/
+/BWBW..WWBWW.BWBW..B/
+/B.BWWB....BBB.WWBBW/
+/////////////////////"
+144 129
+$
+(
+"///////"
+"/WW.BB/"
+"/.WWWW/"
+"/WWBBB/"
+"/BBBWW/"
+"/WWBW./"
+"///////"
+)
+2 11
+(
+"////"
+"/BB/"
+"/WW/"
+"////"
+)
+0 0
+(
+"////"
+"/WW/"
+"/W./"
+"////"
+)
+0 3
+(
+"////"
+"/WW/"
+"/.B/"
+"////"
+)
+1 2
+(
+"////"
+"/WB/"
+"/.W/"
+"////"
+)
+0 2
+(
+"///////"
+"/BWWWW/"
+"/BBWBW/"
+"/..BB./"
+"/.B.BW/"
+"/.WBBW/"
+"///////"
+)
+10 9
+(
+"///////"
+"/.WWBW/"
+"/WB.WW/"
+"/.BWB./"
+"/WWWBB/"
+"/BWW.W/"
+"///////"
+)
+5 13
+(
+"///////"
+"/.BBBW/"
+"/WWWBB/"
+"/WBBBW/"
+"/.BWBW/"
+"/.BBWB/"
+"///////"
+)
+12 4
+(
+"///////"
+"/BBB.B/"
+"/WBWBW/"
+"/BBWBW/"
+"/BWW.B/"
+"/BBWWW/"
+"///////"
+)
+13 7
+(
+"///////"
+"/WBW.W/"
+"/WWB../"
+"/BWW.B/"
+"/BWBW./"
+"/WBBB./"
+"///////"
+)
+6 9
+(
+"////////////"
+"/B.BB.W.WB./"
+"/.WWBWBWWWB/"
+"/BWWBBB.BWB/"
+"/BWWBWBBBWW/"
+"/.BWBWBWWWW/"
+"/BBW.B.BBWW/"
+"/BBB..WBWW./"
+"/WBBB.WWWW./"
+"/WBWWBWB.WB/"
+"/.W..WWWWBB/"
+"////////////"
+)
+39 41
+(
+"////////////"
+"/B..WBWWBBB/"
+"/BWB.WBB.WB/"
+"/B.BBBWBBBB/"
+"/BWB....BBW/"
+"/WBBBWB.WWB/"
+"/W.BWWBW.BW/"
+"/WBBBWBWWWW/"
+"/WBWWB.BWWB/"
+"/.BWWWBB.WB/"
+"/WWW.W.B..B/"
+"////////////"
+)
+42 34
+(
+"////////////"
+"/BWBWWWWBBB/"
+"/.BW.B.WWWW/"
+"/BBWBWBWWWB/"
+"/BBBBB..WBB/"
+"/..BWBBBWB./"
+"/BWWBBWWW.W/"
+"/WWWBBBB.BB/"
+"/BWWBB..WWW/"
+"/BWWBBWBWWW/"
+"/....B.B.W./"
+"////////////"
+)
+38 36
+(
+"////////////"
+"/WW.WBB..WB/"
+"/..BWWWBWWB/"
+"/...BB.B.BW/"
+"/BBWBB.W.BB/"
+"/.W.WWWB.WB/"
+"/WBBBBBBB../"
+"/.BB.WWBB.B/"
+"/WWWBB.WWWW/"
+"/B.BBWB.BWB/"
+"/WWBWBBWWBB/"
+"////////////"
+)
+38 31
+(
+"////////////////"
+"/BBWWBBBWBWW.B./"
+"/.WW.BWBWBWWWBB/"
+"/.WBWB...BB.WBW/"
+"/W.WWWBWBWBW..W/"
+"/BWBBBWBWWB.BBW/"
+"/.WWWBWB.BBBBBW/"
+"/BB.B.BW.B..WBW/"
+"/BBWWBWW..BBWBB/"
+"/WBBB.WWBW.WWBW/"
+"/WWWBBBBBWBWBBW/"
+"/WBBWWWBW.BWWBB/"
+"/WBW..B.B.WW..W/"
+"/BW.WBWWW.WWBBB/"
+"/WWW.BBBBBB..BB/"
+"////////////////"
+)
+78 67
+(
+"/////////////////"
+"/BBWWBBWWBW.BWBW/"
+"/.BB..WWWB..WWWW/"
+"/WBWBBWBWBBWWBWW/"
+"/W.W.BW..B.BW.WB/"
+"/BWW.WB.B.WBBBW./"
+"/WWW..BW.WBB.WW./"
+"/.B.BW..BBB.BBWW/"
+"/WWBW..BBWB.BBBB/"
+"/.W.BWW.WBBW.W.B/"
+"/WB.B.BBBWW..WWW/"
+"/BW.WBW.WWBBWW.B/"
+"/BBWW...BBBWBWBW/"
+"/BBW..WWWWWWBWBB/"
+"/WBBWBWWW.BBW.B./"
+"/B.WWBW.WW.WBBWB/"
+"/////////////////"
+)
+78 87
+(
+"//////////////////"
+"/.WBBBBW.B.BWBW.B/"
+"/BBBWB.WBWW.BWW../"
+"/WWBBBWBWWW...BBB/"
+"/WBBBWWWB.BBBWBWB/"
+"/WB.WW.WBW.BBWBBB/"
+"/BWWWBWWWWB.B..BB/"
+"/W..W.BWBWWBBBB.B/"
+"/BWWW..B.BW.BBWWB/"
+"/.WWBBWWBWWBBBBBB/"
+"/BBBWWBBWBBBWB.BB/"
+"/.BBBBB.WBBBWBBBW/"
+"/WB.WW.BBB.BWBWWW/"
+"/WWW.W.BBBBBW.BWB/"
+"/WWBWWBBB..W...WB/"
+"/WWBBWBBBWW.WBWBB/"
+"/WWBW.WB.B.WWWWWW/"
+"//////////////////"
+)
+105 86
+(
+"/////////////////////"
+"/B.BBW.BB.W..WWBWWBB/"
+"/W..WW.WWW.W.W.WB.../"
+"/WB..BW.B...W.W.WW.W/"
+"/BWBW.BBBBW.W.WWW.BW/"
+"/WWBW..BBWBBWWBW..BW/"
+"/BBBBWW.W..BW.WWWBWW/"
+"/BWWWWW.BBB.WBW.W.BB/"
+"/WBBBWW.BWW..WBWBWWB/"
+"/WWWW.WW.BWBBB.BWW.B/"
+"/.WB.BBBBWBWBBWWW..W/"
+"/BWBBBBW.WBBWB.WBWB./"
+"/BBWW.BWW.BBW.WB..WW/"
+"/.B.BWBWBW.WBBWWWWB./"
+"/WBWW.WBWWWBWW.BBW.B/"
+"/WWWBB.BWBB.B.WWW.B./"
+"/.W.WWWWBBWBW.WBB.BB/"
+"/B.WBWBWWBB.BBBBBBWW/"
+"/WBBW.WWWW.WW.W..BBW/"
+"/WBWBWWBWBW..BW.BBWB/"
+"/////////////////////"
+)
+112 139
+(
+"/////////////////////"
+"/.BW.BBBW.BB.WBB.BWW/"
+"/...BW.B.WBWBBWBBWWW/"
+"/WW..WBWW.W...W...WB/"
+"/.WWWW.WWBBWB.BW.WBB/"
+"/WWW.WW..WBBWBW.WBBB/"
+"/.WWB..BWBWWWBBBB.WB/"
+"/WWWBBWWBB.BBBWBBW.W/"
+"/B.W...B.B.BB.WWWB.B/"
+"/.WW.BBBB.WB..BBBBWB/"
+"/....WB.WWBBBBW.WWBB/"
+"/BWB..W.BB..BWW.BB.B/"
+"/..BBB.WBWW.BWWBWWW./"
+"/BBWBWWW.WB.BWWB.WWW/"
+"/.WBBWWWB.WBBWBWWWWW/"
+"/WWWWBBBWWBBBBBWB.WW/"
+"/.WBBWWWB.B.BWWWB.WB/"
+"/BBB.B.WBWWBWB.BWWWW/"
+"/W.BBWWW.WWWBBBB.BWB/"
+"/WWBBBWWBWWBW.WWBWBB/"
+"/////////////////////"
+)
+129 140
+(
+"/////////////////////"
+"/.WWBBWBBB.WWWBW.W.W/"
+"/WW..WBWBWBBWBBBBWWW/"
+"/W.WBBBBBBWBBBB.B.BW/"
+"/.BWBB.BBWW..W.W..BW/"
+"/BWW.WWBW.BW.W.WWW.W/"
+"/BWBWBBBBBWWW.WW.BWB/"
+"/BBBB.B.WWBBB.W.BWBB/"
+"/BB..W.BW.WBWBBBBBW./"
+"/BWB.BWBW..WWWBWWWWW/"
+"/.BBBB.WW.BWBWWWBBWW/"
+"/BBBBWW..WBW..WWWW../"
+"/W.WWWBBBWWWWBBWBBW./"
+"/BBWBWWBB.BW..WBBWWB/"
+"/BBBBWBB.BWBWBBWB.BB/"
+"/BWBB.WWW.BW.BB.B.../"
+"/BBWWWW.W.BBWBWWBW.W/"
+"/..WBB.B.WWBBWBBBBWW/"
+"/BWBW..WWBWW.BWBW..B/"
+"/B.BWWB....BBB.WWBBW/"
+"/////////////////////"
+)
+144 129
+$
