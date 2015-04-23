@@ -4,7 +4,6 @@ object Main {
   
   def main(args: Array[String]): Unit = {
     val model = new Model
-    // val textView = new TextView
     val gui = new GUI
     val controller = new Controller(model)
     controller.register(gui)
@@ -30,7 +29,7 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
   override def doExecute(p:Int, currentPhase:Int):Card = {
     val card = super.doExecute(p, currentPhase)
     showCardExec("player " + p.toString + " executes " + card.attribute.toString)
-    Thread sleep 500
+    Thread sleep 10
     card
   }
   def showCardExec(text_to_update:String) {
@@ -50,10 +49,5 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
 
   def showPlayingArea {
     views.foreach(_.displayPlayingArea(model.game))
-    // for(l<-model.game.textGameArea) {
-    //  var tl = ""
-    //  for(c<-l) tl+= c + " "
-    //  println(tl)
-    // }
   } 
 }
