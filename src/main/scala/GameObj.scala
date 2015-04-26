@@ -336,7 +336,7 @@ class Personality0 extends Personality{
         hand // really lame personality
     }
 }
-class Loves_Conveyer_Belts extends Personality{
+class Lazy_Leo extends Personality{
     //loves conveyer belts
     def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
         var localgame = game.copy
@@ -397,14 +397,14 @@ class Loves_Conveyer_Belts extends Personality{
     }
 }
 
-class Eyes_Closed extends Personality {
+class Ray_Charles extends Personality {
     def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
         //close your eyes and pick the cards
         Random.shuffle(hand.toList).toArray
     }
 }
 
-class Shortest_Path extends Personality {
+class Bobby_Fischer extends Personality {
     def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
         def facing(t:Game=game) = t.robots(robotNumber-1).direction
         def position(t:Game=game):(Int, Int) = (t.robots(robotNumber-1).x, t.robots(robotNumber-1).y)
