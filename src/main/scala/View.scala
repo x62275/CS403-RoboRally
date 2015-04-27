@@ -66,9 +66,6 @@ class GUI extends View {
   val lw = 40
   val images = loadImages()
 
-  
-  
-
   val labels = Array.fill(16*12)(genLabel(images("open")))
   val len = 16
   val width = 12
