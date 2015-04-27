@@ -12,7 +12,7 @@ object Main {
 }
 class Model {    
   val ai:Array[Personality] = Array( new Lazy_Leo , new Greedy_George , new Ray_Charles , new Bobby_Fischer )
-  //val ai = Array.fill[Personality](4)( new Ray_Charles )
+  //val ai = Array.fill[Personality](4)( new Greedy_George )
   val po = new PlayerOrder( ai )
   val game = new Game()
   game.init
@@ -29,7 +29,7 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
   override def doExecute(p:Int, currentPhase:Int):Card = {
     val card = super.doExecute(p, currentPhase)
     showCardExec("player " + p.toString + " executes " + card.attribute.toString)
-    Thread sleep 10
+    Thread sleep 50
     card
   }
   def showCardExec(text_to_update:String) {

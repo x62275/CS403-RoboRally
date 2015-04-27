@@ -321,6 +321,7 @@ class GameSim(board:Game, po:PlayerOrder){
                     turnmotions
                     turnNum +=1
                 }
+                println(checkWin.toString + " Wins")
             }
         });
         t.start();
@@ -343,6 +344,23 @@ class Lazy_Leo extends Personality{
         //find my position
         def findpos(t:Game=localgame):(Int, Int) = (t.robots(robotNumber-1).x, t.robots(robotNumber-1).y)
         def findface(t:Game=localgame):Facing = t.robots(robotNumber-1).direction
+        //find the flag
+        val lookingfor = game.robots(robotNumber-1).getFlag
+        val (x, y) = game.flags(lookingfor)
+        //find the general direction of the flag
+        def findangle(xn:Int, yn:Int) = {
+            var angle = Math.toDegrees(Math.atan2(x - xn, y - yn));
+            angle = angle + Math.ceil( -angle / 360 ) * 360
+            if(45 <= angle && angle < 135) East
+            else if(135 <= angle && angle < 225) South
+            else if(225 <= angle && angle < 315) West
+            else North
+        }
+        def distance(xn:Int, yn:Int) = {
+            val dx = x - xn
+            val dy = x - yn
+            Math.sqrt(dx*dx + dy*dy)
+        }
         //where will my cards take me?
         var localhand = hand
         val chosen:Array[Card] = Array.fill(7)(null)
@@ -357,13 +375,13 @@ class Lazy_Leo extends Personality{
                 val c = game.board(x)(y)
                 //println(card.attribute.toString, c=='U', y0 > y, findface(testgame)==North && findface()!=North,findface(testgame), c=='R' || c=='L' || c=='D', y0==y)
                 //give the conveyer belt pieces a higher priority
-                if(c=='U') (0, card)
+                if(testgame.robots(robotNumber-1).getFlag > lookingfor) (0, card)
                 //give cards that move upward next highest
-                else if (y0 > y) (1, card)
+                else if (distance(x0, y0) > distance(x, y)) (1, card)
                 //if facing north, but werent before
-                else if (findface(testgame)==North && findface()!=North) (2, card)
+                else if (findface(testgame)==findangle(x,y)) (2, card)
                 //we would rather ride the free train then random stuff
-                else if(c=='R' || c=='L' || c=='D') (3, card) 
+                else if(c=='U' || c=='R' || c=='L' || c=='D') (3, card) 
                 //at least dont go backwards
                 else if(y0==y) (4, card)
                 else (5, card)
@@ -479,25 +497,63 @@ class Greedy_George extends Personality {
             else if(225 <= angle && angle < 315) West
             else North
         }
+        def distance(xn:Int=x0, yn:Int=y0) = {
+            val dx = x - xn
+            val dy = x - yn
+            Math.sqrt(dx*dx + dy*dy)
+        }
         var localhand = hand.clone
-        var chosen:Array[Card] = Array.fill(5)(null)
+        val chosen:Array[Card] = Array.fill(5)(null)
         var n = 1
         def getFirstMovement:Array[Card] = {
             var collection:List[(Array[Card],Int)] = List()
+            val startdist = distance()
             for(c <- localhand.combinations(n)){
                 for(p <- c.permutations){
                     //play out p
-                    //collection = (p, weight) +: collection
-                    //if the robot lands on the correct flag, return p
+                    val testgame = game.copy
+                    for(card<-chosen){
+                        if(card != null){
+                            testgame.playCard(robotNumber, card)
+                            testgame.endRegisterPhase
+                        }
+                    }
+                    for(card<-p){
+                        testgame.playCard(robotNumber, card)
+                        testgame.endRegisterPhase
+                    }
+                    //find ending position and facing
+                    lookingfor = game.robots(robotNumber-1).getFlag
+                    if(lookingfor < 3) {
+                        val t = game.flags(lookingfor)
+                        x = t._1
+                        y = t._2
+                    }
+                    val (xe, ye) = position(testgame)
+                    val fe = facing(testgame)
+                    val enddist = distance(xe, ye)
+                    val endchar = testgame.board(xe)(ye)
+                    //do tests to determine weight
+                    var weight = 0
+                    if(findangle(xe, ye)==fe) weight += 2
+                    if(enddist <= startdist) weight += (startdist-enddist).toInt max 1
+                    if( testgame.robots(robotNumber-1).getFlag > lookingfor )
+                        weight = Int.MaxValue
+                    collection = (p, weight) +: collection
                 }
             }
             collection.maxBy(_._2)._1
         }
-        while(chosen.length < 5 && n <= 5){
+        var n2 = 0
+        while(n2 < 5 && n < 5){
             val t = getFirstMovement
-
-            n += 1
+            for(c<-t){
+                chosen(n2) = c
+                localhand = (localhand.toSet - c).toArray
+                n2 += 1 
+            }
+            n = 5-n2
         }
-        hand //remove
+        chosen ++ localhand
     }
 }
