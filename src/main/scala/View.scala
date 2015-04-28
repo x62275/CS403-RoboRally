@@ -49,10 +49,18 @@ abstract class View {
           controller.get.showPlayingArea
         })
         contents += new MenuItem(Action("Restart") {
-          controller.get.initGame
+          controller.get.initGame()
         })
         contents += new MenuItem(Action("Exit") {
           sys.exit(0)
+        })
+      }
+      contents += new Menu("Board") {
+        contents += new MenuItem(Action("Default") {
+          controller.get.initGame(0)
+        })
+        contents += new MenuItem(Action("Danger Zone!!!!") {
+          controller.get.initGame(1)
         })
       }
     }

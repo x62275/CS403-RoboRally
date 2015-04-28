@@ -125,45 +125,45 @@ class GameTest extends FunSpec with Matchers {
     describe("A Game"){
         it("has a game board"){
             val game = new Game 
-            game.init
+            game.init()
             assert(game.getLayout!=null)
         }
         it("has 4 robots"){
             val game = new Game 
-            game.init
+            game.init()
             assert(game.getRobotLocations.length == 4)
         }
         it("has as many registers as robots"){
             val game = new Game 
-            game.init
+            game.init()
             assert(game.viewRegisters.size == game.getRobotLocations.length)
         }
         it("has as many starting blocks as robots"){
             val game = new Game 
-            game.init
+            game.init()
             assert(game.startBlocks.length == game.getRobotLocations.length)
         }
         describe("when initialized"){
             it("should be able to read the board"){
                 val game = new Game 
-                game.init
+                game.init()
                 assert(game.interpretBoard != null)
             }
         }
         it("should be able to return the board layout"){
             val game = new Game 
-            game.init
+            game.init()
             //nothing has changed in the game then the layout should equal the init state
             assert(game.interpretBoard.deep == game.getLayout.deep)
         }
         it("should be able to return robot locations"){
             val game = new Game 
-            game.init
+            game.init()
             assert(game.getRobotLocations.deep == game.startBlocks.toArray.deep)
         }
         it("should be able to enact a player's card"){
             val game = new Game 
-            game.init
+            game.init()
             val startPos = game.getRobotLocations(0)
             game.playCard(1,new Card(Move1,0))
             val endPos = game.getRobotLocations(0)
@@ -171,7 +171,7 @@ class GameTest extends FunSpec with Matchers {
         }
         it("should return a player to the starting block if they fall in a hole or go off the edge"){
             val game = new Game 
-            game.init
+            game.init()
             val startPos = game.startBlocks(0)
             game.playCard(1, new Card(UTurn,0))
             game.playCard(1, new Card(Move1,0))
@@ -180,7 +180,7 @@ class GameTest extends FunSpec with Matchers {
         }
         it("should show player registers"){
             val game = new Game 
-            game.init
+            game.init()
             val jimsRegister = new Register
             jimsRegister.updateRegister(jimsHand.dropRight(2))
             game.updateRegister(1,jimsRegister,jimsHand.drop(5))
@@ -188,7 +188,7 @@ class GameTest extends FunSpec with Matchers {
         }
         it("should show the score"){
             val game = new Game 
-            game.init
+            game.init()
             assert(game.getScore.deep == Array.fill(4)(0).deep )
         }
         it("should be able to determine the player order given a register phase"){
@@ -198,14 +198,14 @@ class GameTest extends FunSpec with Matchers {
                 r
             }
             val game = new Game 
-            game.init
+            game.init()
             for(i<-c.indices) game.updateRegister(i+1, c(i), null)
             assert(game.getOrder(0) == List(4,3,2,1))
         }
         describe("at the end of a register phase"){
             it("should move all the conveyer belts"){
                 val game = new Game 
-                game.init
+                game.init()
                 game.playCard(2,new Card(Move3,0))
                 game.playCard(2,new Card(Move2,0))
                 val startPos = game.getRobotLocations(1)
@@ -217,7 +217,7 @@ class GameTest extends FunSpec with Matchers {
         describe("at the end of a turn"){
             it("should replace all cards in the registers"){
                 val game = new Game 
-                game.init
+                game.init()
                 for (i<- 1 to 4){
                     val r = new Register
                     r.updateRegister(game.showHand(i).dropRight(2))
@@ -230,7 +230,7 @@ class GameTest extends FunSpec with Matchers {
             }
             it("should shuffle the deck"){
                 val game = new Game 
-                game.init
+                game.init()
                 var cards:Set[Card] = Set()
                 for (i<- 1 to 4){
                     val r = new Register
@@ -245,7 +245,7 @@ class GameTest extends FunSpec with Matchers {
             }
             it("should give each player 5 new cards"){
                 val game = new Game 
-                game.init
+                game.init()
                 val hands:Array[Array[Card]] = Array.fill(4)(null)
                 for (i<- 1 to 4){
                     val r = new Register

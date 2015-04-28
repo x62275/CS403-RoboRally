@@ -1,0 +1,33 @@
+* * * * * * * * * * * * * *
+* H L U L U L U L U L U H *
+* R D R D R D R & R D R D *
+* U R U R U R U R U R D L *
+* R U R H R D R D H D R D *
+* U % U L U L U L U L D L *
+* R U R D R H H D R D R D *
+* U L U L U H H L U L D L *
+* R U R D R D R D R $ R D *
+* U L U H U L U L H L D L *
+* R U L D L D L D L D L D *
+* U L U L U L U L U L D L *
+* H D R D R D R D R D R H *
+* T T T [         ] T T T *
+*     ]   [ ] [ ]   [     *
+*     ] 3 [ ] [ ] 4 [     *
+*     ]   [ 1 2 ]   [     *
+* * * * * * * * * * * * * *
+
+*       Edge
+H       Hole
+R       Conveyer Right
+L       Conveyer Left
+U       Conveyer Up
+D       Conveyer Down
+T       Wall Above Block
+B       Wall Below Block
+[       Wall Left of Block
+]       Wall Right of Block
+$       Flag
+1,2,3,4 Starting Blocks
+
+"* * * * * * * * * * * * * *\n* H L U L U L U L U L U H *\n* R D R D R D R & R D R D *\n* U R U R U R U R U R D L *\n* R U R H R D R D H D R D *\n* U % U L U L U L U L D L *\n* R U R D R H H D R D R D *\n* U L U L U H H L U L D L *\n* R U R D R D R D R $ R D *\n* U L U H U L U L H L D L *\n* R U L D L D L D L D L D *\n* U L U L U L U L U L D L *\n* H D R D R D R D R D R H *\n* T T T [ X X X X ] T T T *\n* X X ] X [ ] [ ] X [ X X *\n* X X ] 3 [ ] [ ] 4 [ X X *\n* X X ] X [ 1 2 ] X [ X X *\n* * * * * * * * * * * * * *"

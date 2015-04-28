@@ -15,8 +15,8 @@ class Model {
   //val ai = Array.fill[Personality](4)( new Greedy_George )
   val po = new PlayerOrder( ai )
   val game = new Game()
-  game.init
-  def initGame { game.init }
+  game.init()
+  def initGame(i: Int) { game.init(i) }
 }
 
 class Controller(model: Model) extends GameSim(model.game, model.po) {
@@ -38,8 +38,8 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
     //val input = readLine("waiting\n") 
   }
 
-  def initGame = {
-    model.initGame
+  def initGame(i: Int = 0) = {
+    model.initGame(i)
     showGame
   }
   

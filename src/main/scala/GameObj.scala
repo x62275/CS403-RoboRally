@@ -67,24 +67,27 @@ class Game( var board:Array[Array[Char]] = null, var robots:Array[Robot] = Array
     val startBlocks = Array((5,15),(6,15),(3,14),(8,14))
     val flags = Array((9,7),(1,4),(8,1))
     def decksize = deck.length
-    def interpretBoard:Array[Array[Char]]={
+    def interpretBoard(i:Int = 0):Array[Array[Char]]={
         var r = Array.fill[Char](12,16)(' ')
         /*val source = scala.io.Source.fromFile("board.txt")
         val rows = source.getLines.toArray
         source.close()*/
-        val rows = "* * * * * * * * * * * * * *\n* X X T U T D U T D T U X *\n* L X H U X D U & D X X R *\n* [ X X U X D U X D [ X ] *\n* R R R X X D U X D L L L *\n* [ % X X B D U B X X X ] *\n* L L L L L X X L L L L L *\n* X R R R R X X R R R R R *\n* [ X X X T D U T X $ X ] *\n* L L L X X D U X X L L L *\n* [ X X U X D U X D X T ] *\n* H B X U X D U X D X X R *\n* X X B U B D X B D B U X *\n* X X X X [ X X ] X X X X *\n* X X X X X X X X X X X X *\n* X X X r X X X X p X X X *\n* X X X X X g b X X X X X *\n* * * * * * * * * * * * * *".split('\n')
+        val rowslist =  List("* * * * * * * * * * * * * *\n* X X T U T D U T D T U X *\n* L X H U X D U & D X X R *\n* [ X X U X D U X D [ X ] *\n* R R R X X D U X D L L L *\n* [ % X X B D U B X X X ] *\n* L L L L L X X L L L L L *\n* X R R R R X X R R R R R *\n* [ X X X T D U T X $ X ] *\n* L L L X X D U X X L L L *\n* [ X X U X D U X D X T ] *\n* H B X U X D U X D X X R *\n* X X B U B D X B D B U X *\n* X X X X [ X X ] X X X X *\n* X X X X X X X X X X X X *\n* X X X r X X X X p X X X *\n* X X X X X g b X X X X X *\n* * * * * * * * * * * * * *".split('\n'),
+                             "* * * * * * * * * * * * * *\n* H L U L U L U L U L U H *\n* R D R D R D R & R D R D *\n* U R U R U R U R U R D L *\n* R U R H R D R D H D R D *\n* U % U L U L U L U L D L *\n* R U R D R H H D R D R D *\n* U L U L U H H L U L D L *\n* R U R D R D R D R $ R D *\n* U L U H U L U L H L D L *\n* R U L D L D L D L D L D *\n* U L U L U L U L U L D L *\n* H D R D R D R D R D R H *\n* T T T [ X X X X ] T T T *\n* X X ] X [ ] [ ] X [ X X *\n* X X ] r [ ] [ ] p [ X X *\n* X X ] X [ g b ] X [ X X *\n* * * * * * * * * * * * * *".split('\n')
+                             )
+        var rows = rowslist(i)
         for(y<-1 to 16){
             val columns = rows(y).split(' ').map(_(0))
             for(x<-1 to 12) r(x-1)(y-1) = columns(x)
         }
         r
     }
-    def init{
+    def init(i:Int = 0){
         //load board
         //set initial robot positions 
         //draw 7 cards for each robot's hand
         //update robots var
-        board = interpretBoard
+        board = interpretBoard(i)
         deck = new Deck
         for(i<-robots.indices){
             val cards = Array.fill(7){deck.draw}
@@ -407,7 +410,7 @@ class Lazy_Leo extends Personality{
     def test{
         val robotNumber = 1
         val testgame = new Game
-        testgame.init
+        testgame.init()
         def play{
             val deck = new Deck
             val hand = Array.fill(7)(deck.draw)
