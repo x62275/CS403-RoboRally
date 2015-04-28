@@ -26,11 +26,11 @@ class Controller(model: Model) extends GameSim(model.game, model.po) {
     views += view
   }
   
-  override def doExecute(p:Int, currentPhase:Int):Card = {
-    val card = super.doExecute(p, currentPhase)
-    showCardExec("player " + p.toString + " executes " + card.attribute.toString)
-    Thread sleep 50
-    card
+  override def doExecute(p:Int, currentPhase:Int):String = {
+    val text = super.doExecute(p, currentPhase)
+    showCardExec(text)
+    Thread sleep 100
+    text
   }
   def showCardExec(text_to_update:String) {
     showPlayingArea

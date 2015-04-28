@@ -95,7 +95,7 @@ class GUI extends View {
         images(img.slice(4,img.length - 4)) = new ImageIcon(img).getImage.getScaledInstance(lw,lw,Image.SCALE_SMOOTH)
       }
       images
-    } catch { case _ => loadImages(dir) }
+    } catch { case _:Throwable => loadImages(dir) }
 
   }
   def genLabel(img: Image) = {

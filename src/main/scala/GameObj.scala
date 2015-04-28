@@ -85,6 +85,7 @@ class Game( var board:Array[Array[Char]] = null, var robots:Array[Robot] = Array
         //draw 7 cards for each robot's hand
         //update robots var
         board = interpretBoard
+        deck = new Deck
         for(i<-robots.indices){
             val cards = Array.fill(7){deck.draw}
             var start = startBlocks(i)
@@ -273,12 +274,19 @@ class GameSim(board:Game, po:PlayerOrder){
         0
     }
     
-    def doExecute(p:Int, currentPhase:Int):Card = {
+    def doExecute(p:Int, currentPhase:Int):String = {
         val r = board.viewRegisters
         val card = r(p-1).viewRegister(currentPhase)
         board.playCard(p, card)
-        println("player " + p.toString + " executes " + card.attribute.toString)
-        card
+        val word = p match {
+            case 1 => "green"
+            case 2 => "blue"
+            case 3 => "red"
+            case _ => "purple"
+        }
+        val s = word + " executes " + card.attribute.toString
+        println(s)
+        s
     }
     def doRegisterPhase{
         val currentPhase = board.curPhase
@@ -435,7 +443,7 @@ class Bobby_Fischer extends Personality {
         val (x, y) = game.flags(lookingfor)
         //find the general direction of the flag
         def findangle(xn:Int=x0, yn:Int=y0) = {
-            var angle = Math.toDegrees(Math.atan2(x - xn, y - yn));
+            var angle = Math.toDegrees(Math.atan2(xn - x, yn - y));
             angle = angle + Math.ceil( -angle / 360 ) * 360
             if(45 <= angle && angle < 135) East
             else if(135 <= angle && angle < 225) South
@@ -490,7 +498,7 @@ class Greedy_George extends Personality {
         var (x0:Int, y0:Int) = position()
         //find the general direction of the flag
         def findangle(xn:Int=x0, yn:Int=y0) = {
-            var angle = Math.toDegrees(Math.atan2(x - xn, y - yn));
+            var angle = Math.toDegrees(Math.atan2(xn - x, yn - y));
             angle = angle + Math.ceil( -angle / 360 ) * 360
             if(45 <= angle && angle < 135) East
             else if(135 <= angle && angle < 225) South
