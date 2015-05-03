@@ -560,7 +560,7 @@ class Greedy_George extends Personality {
         }
         var localhand = hand.clone
         val chosen:Array[Card] = Array.fill(5)(null)
-        var n = 3
+        var n = 1
         def getFirstMovement:Array[Card] = {
             var collection:List[(Array[Card],Int)] = List()
             val startdist = distance()
@@ -640,7 +640,7 @@ class Silly_Sally extends Personality {
         }
         var localhand = hand.clone
         var chosen:List[Card] = List()
-        var n = 1
+        var n = 2
         def getFirstMovement:Array[Card] = {
             var collection:List[(Array[Card],Int)] = List()
             val startdist = distance()
