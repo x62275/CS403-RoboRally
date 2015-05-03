@@ -367,7 +367,7 @@ class Spawner(val n:Int = 10){
     var l:List[Int] = List()
     def addElem(i:Int){ l +:= i }
     def motions {
-        for(i<- 1 to 10) {
+        for(i<- 1 to n) {
             val m = new Model
             val controller = new QuickSim(m, this)
             controller.doGame
@@ -560,7 +560,7 @@ class Greedy_George extends Personality {
         }
         var localhand = hand.clone
         val chosen:Array[Card] = Array.fill(5)(null)
-        var n = 1
+        var n = 3
         def getFirstMovement:Array[Card] = {
             var collection:List[(Array[Card],Int)] = List()
             val startdist = distance()
