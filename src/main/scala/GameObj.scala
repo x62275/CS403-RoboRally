@@ -288,7 +288,7 @@ class GameSim(board:Game, po:PlayerOrder){
             case _ => "purple"
         }
         val s = word + " executes " + card.attribute.toString
-        println(s)
+        // println(s)
         s
     }
     def doRegisterPhase{
@@ -299,13 +299,25 @@ class GameSim(board:Game, po:PlayerOrder){
     def doMove{
         val player = po.curUp
         val selection = po.players(player-1).placeCards(player, board.showHand(player), board.copy)
-        assert(selection.toSet == board.showHand(player).toSet) // no cheating 
+        if(selection.toSet != board.showHand(player).toSet){// no cheating 
+            // val e = selection.toSet
+            // val e2 = board.showHand(player).toSet
+            // val e3 = (e union e2) -- (e intersect e2).toList
+            // this.synchronized{
+            //     println("-----------CHEATING--------")
+            //     println(e.map(_.attribute.toString).mkString(", "))
+            //     println(e2.map(_.attribute.toString).mkString(", "))
+            //     println(e3.map(_.attribute.toString).mkString(", "))
+            //     println("---------------------------")
+            // }
+            throw new Exception("cheating")
+        }
         val r = new Register
         r.updateRegister(selection.take(5))
         board.updateRegister(player, r, selection.drop(5))
         var s = "player "+player.toString+" chooses"
         for(i<-selection.dropRight(2)) s+= " "+i.attribute.toString
-        println(s)
+        // println(s)
     }
     def turnmotions{
         for(i<-po.players.indices)
@@ -323,20 +335,53 @@ class GameSim(board:Game, po:PlayerOrder){
         });
         t.start();
     }
+    def gameMotions:Int = {
+        var turnNum = 0
+        //board.init
+        while(checkWin==0 && turnNum < 100) {
+            turnmotions
+            turnNum +=1
+        }
+        // println(checkWin.toString + " Wins")
+        turnNum
+    }
     def doGame{
         val t = new Thread(new Runnable() {
             def run() {
-                var turnNum = 0
-                //board.init
-                while(checkWin==0 && turnNum < 100) {
-                    turnmotions
-                    turnNum +=1
-                }
-                println(checkWin.toString + " Wins")
+                gameMotions
             }
         });
         t.start();
     }
+}
+
+class QuickSim(model:Model, spawner:Spawner) extends GameSim(model.game, model.po) {
+    override def gameMotions:Int = {
+        val i = super.gameMotions
+        spawner.addElem(i)
+        i
+    }
+
+}
+class Spawner(val n:Int = 10){
+    var l:List[Int] = List()
+    def addElem(i:Int){ l +:= i }
+    def motions {
+        for(i<- 1 to 10) {
+            val m = new Model
+            val controller = new QuickSim(m, this)
+            controller.doGame
+        }
+        while(l.length < n){
+            Thread.sleep(1000)
+        }
+        println(l.mkString(", "))  
+        val mean = l.sum / n
+        val devs = l.map(s => (s-mean) * (s-mean))
+        val stdev = Math.sqrt(devs.sum / n).toInt
+        println(mean, stdev)
+    }
+    motions
 }
 
 abstract class Personality{
@@ -415,7 +460,7 @@ class Lazy_Leo extends Personality{
             val deck = new Deck
             val hand = Array.fill(7)(deck.draw)
             val choices = placeCards(robotNumber,hand, testgame.copy)
-            println(choices.map(_.attribute.toString).mkString(", "))
+            // println(choices.map(_.attribute.toString).mkString(", "))
             for(i<-0 until 5) {
                 testgame.playCard(robotNumber, choices(i))
                 testgame.endRegisterPhase
@@ -439,7 +484,7 @@ class Bobby_Fischer extends Personality {
         def position(t:Game=game):(Int, Int) = (t.robots(robotNumber-1).x, t.robots(robotNumber-1).y)
         //decide what flag you're on
         val lookingfor = game.robots(robotNumber-1).getFlag
-        println(robotNumber.toString+" is looking for flag "+lookingfor.toString)
+        // println(robotNumber.toString+" is looking for flag "+lookingfor.toString)
         //find starting position
         val (x0:Int, y0:Int) = position()
         //find the flag
@@ -496,7 +541,7 @@ class Greedy_George extends Personality {
         //decide what flag you're on
         var lookingfor = game.robots(robotNumber-1).getFlag
         var (x, y) = game.flags(lookingfor)
-        println(robotNumber.toString+" is looking for flag "+lookingfor.toString)
+        // println(robotNumber.toString+" is looking for flag "+lookingfor.toString)
         //find starting position
         var (x0:Int, y0:Int) = position()
         //find the general direction of the flag
@@ -566,5 +611,92 @@ class Greedy_George extends Personality {
             n = 5-n2
         }
         chosen ++ localhand
+    }
+}
+
+class Silly_Sally extends Personality {
+    def placeCards(robotNumber:Int,hand:Array[Card],game:Game):Array[Card] = {
+        def facing(t:Game=game) = t.robots(robotNumber-1).direction
+        def position(t:Game=game):(Int, Int) = (t.robots(robotNumber-1).x, t.robots(robotNumber-1).y)
+        //decide what flag you're on
+        var lookingfor = game.robots(robotNumber-1).getFlag
+        var (x, y) = game.flags(lookingfor)
+        // println(robotNumber.toString+" is looking for flag "+lookingfor.toString)
+        //find starting position
+        var (x0:Int, y0:Int) = position()
+        //find the general direction of the flag
+        def findangle(xn:Int=x0, yn:Int=y0) = {
+            var angle = Math.toDegrees(Math.atan2(xn - x, yn - y));
+            angle = angle + Math.ceil( -angle / 360 ) * 360
+            if(45 <= angle && angle < 135) East
+            else if(135 <= angle && angle < 225) South
+            else if(225 <= angle && angle < 315) West
+            else North
+        }
+        def distance(xn:Int=x0, yn:Int=y0) = {
+            val dx = x - xn
+            val dy = x - yn
+            Math.sqrt(dx*dx + dy*dy)
+        }
+        var localhand = hand.clone
+        var chosen:List[Card] = List()
+        var n = 1
+        def getFirstMovement:Array[Card] = {
+            var collection:List[(Array[Card],Int)] = List()
+            val startdist = distance()
+            for(c <- localhand.combinations(n min localhand.size)){
+                for(p <- c.permutations){
+                    //play out p
+                    val testgame = game.copy
+                    for(card<-chosen){
+                        if(card != null){
+                            testgame.playCard(robotNumber, card)
+                            testgame.endRegisterPhase
+                        }
+                    }
+                    for(card<-p){
+                        testgame.playCard(robotNumber, card)
+                        testgame.endRegisterPhase
+                    }
+                    //find ending position and facing
+                    lookingfor = game.robots(robotNumber-1).getFlag
+                    if(lookingfor < 3) {
+                        val t = game.flags(lookingfor)
+                        x = t._1
+                        y = t._2
+                    }
+                    val (xe, ye) = position(testgame)
+                    val fe = facing(testgame)
+                    val enddist = distance(xe, ye)
+                    val endchar = testgame.board(xe)(ye)
+                    //do tests to determine weight
+                    var weight = 0
+                    if(findangle(xe, ye)==fe) weight += 1
+                    if(enddist <= startdist) weight += (startdist-enddist).toInt max 1
+                    if( testgame.robots(robotNumber-1).getFlag > lookingfor )
+                        weight = Int.MaxValue
+                    collection = (p, weight) +: collection
+                }
+            }
+            if(collection.isEmpty) return Array()
+            val t = collection.maxBy(_._2)
+            if(t._2 > 0) t._1
+            else Array()
+        }
+        var n2 = 0
+        while(n2 < 5 && n < 5){
+            val t = getFirstMovement
+            if(t.isEmpty) n += 1
+            for(c<-t){
+                if(n2 < 5){
+                    chosen :+= c
+                    localhand = (localhand.toSet - c).toArray
+                    n2 += 1 
+                }
+            }
+        }
+        //println(chosen.map(_.attribute.toString).mkString(", "))
+        //println(localhand.map(_.attribute.toString).mkString(", "))
+        chosen.toArray ++ localhand
     }
 }
