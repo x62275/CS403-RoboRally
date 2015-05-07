@@ -62,6 +62,12 @@ abstract class View {
         contents += new MenuItem(Action("Danger Zone!!!!") {
           controller.get.initGame(1)
         })
+        contents += new MenuItem(Action("Blank Space") {
+          controller.get.initGame(2)
+        })
+        contents += new MenuItem(Action("Rama dama ding dong") {
+          controller.get.initGame(99)
+        })
       }
     }
   }

@@ -15,11 +15,7 @@ object Main {
   }
 }
 class Model {    
-  // val ai:Array[Personality] = Array( new Lazy_Leo , new Greedy_George , new Ray_Charles , new Bobby_Fischer )
-  val ai:Array[Personality] = Array(  new Greedy_George , new Ray_Charles , new Ray_Charles, new Ray_Charles )
-  // val ai = Array.fill[Personality](4)( new Greedy_George )
-  // val ai = Array.fill[Personality](4)( new Bobby_Fischer ).
-  // val ai = Array.fill[Personality](4)( new Silly_Sally )
+  val ai:Array[Personality] = Array( new Lazy_Leo , new Greedy_George , new Silly_Sally , new Bobby_Fischer )
   val po = new PlayerOrder( ai )
   val game = new Game()
   game.init()

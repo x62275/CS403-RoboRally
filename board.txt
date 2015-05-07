@@ -29,3 +29,5 @@ B       Wall Below Block
 ]       Wall Right of Block
 $       Flag
 1,2,3,4 Starting Blocksjavascript:showLesson('WEB-3')
+
+H, R, L, U, D, T, B, [, ]
